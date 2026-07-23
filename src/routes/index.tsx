@@ -252,18 +252,16 @@ function CaseModal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-ink/55 px-3 py-3 backdrop-blur-sm sm:px-6 sm:py-8"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
+      className="fixed inset-0 z-50 overflow-y-auto bg-paper"
     >
       <article
         role="dialog"
         aria-modal="true"
         aria-labelledby="case-modal-title"
-        className="mx-auto w-full max-w-5xl overflow-hidden border border-ink bg-paper shadow-2xl"
+        className="min-h-dvh w-full bg-paper"
       >
-        <div className="flex flex-col items-start justify-between gap-5 border-b border-rule p-5 sm:flex-row sm:gap-6 sm:p-8">
+        <div className="sticky top-0 z-10 border-b border-rule bg-paper/95 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-4 py-5 sm:flex-row sm:gap-6 sm:px-6 sm:py-7">
           <div>
             <div className="flex flex-wrap items-center gap-3">
               <span className="ref-code text-ink">{project.category}</span>
@@ -288,9 +286,10 @@ function CaseModal({
           >
             Close
           </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 p-5 sm:gap-10 sm:p-8 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 sm:gap-10 sm:px-6 sm:py-12 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div className="space-y-10">
             <section className="grid grid-cols-1 gap-3 border-t border-rule pt-5 sm:grid-cols-[110px_1fr]">
               <h4 className="ref-code pt-1">Problem</h4>
