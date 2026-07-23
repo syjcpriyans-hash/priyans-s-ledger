@@ -81,17 +81,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Priyans builds AI-powered products and runs on-the-ground research into Indian SME and D2C markets. Selected work, systems, and case studies.",
+          "AI-powered products and structured research into Indian SME and D2C markets. See ListingsReady, the trading operations system, and the India market research.",
       },
       { name: "author", content: "Priyans" },
       { property: "og:title", content: "Priyans — Builder, Researcher, Operator" },
       {
         property: "og:description",
         content:
-          "AI-powered products backed by market research into Indian SME and D2C. See the work.",
+          "AI-powered products and structured research into Indian SME and D2C markets. See ListingsReady, the trading operations system, and the India market research.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Priyans — Builder, Researcher, Operator" },
+      { name: "twitter:description", content: "AI-powered products and structured research into Indian SME and D2C markets. See ListingsReady, the trading operations system, and the India market research." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9d0db2eb-9e75-45ed-aebf-6f2214cbb6a3/id-preview-614e0f63--0f71a92b-aebe-4c6c-a165-ae6b5ad54e23.lovable.app-1784774600359.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9d0db2eb-9e75-45ed-aebf-6f2214cbb6a3/id-preview-614e0f63--0f71a92b-aebe-4c6c-a165-ae6b5ad54e23.lovable.app-1784774600359.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

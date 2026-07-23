@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "AI-powered products backed by on-the-ground research into Indian SME and D2C markets.",
+          "AI-powered products and structured research into Indian SME and D2C markets. See ListingsReady, the trading operations system, and the India market research.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
