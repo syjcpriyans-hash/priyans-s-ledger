@@ -277,3 +277,17 @@ header nav a.ref-code {
   }
 }
 
+/* Updated About section copy. */
+#about .max-w-2xl > p {
+  display: none;
+}
+
+#about .max-w-2xl::after {
+  content: "I’m a 4th-year Marketing student at Toronto Metropolitan University, focused on combining business, technology, and AI. I work with data workflows, documentation systems, and contribute to website development and SEO optimization. I’m passionate about using AI and digital tools to streamline processes and build practical solutions that drive real business impact.";
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.625;
+  color: var(--color-ink);
+}
+
