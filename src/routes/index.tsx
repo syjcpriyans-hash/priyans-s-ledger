@@ -68,12 +68,6 @@ function Hero() {
           I build AI-powered products and back them with on-the-ground research
           into where Indian SME and D2C markets are underserved.
         </p>
-        <div className="mt-6 flex items-center gap-3">
-          <span className="ref-code">LOC —</span>
-          <span className="font-mono text-sm tracking-wide text-ink">
-            Canada → India
-          </span>
-        </div>
         <div className="mt-12 flex flex-wrap gap-3">
           <a
             href="#work"
