@@ -151,7 +151,7 @@ const CASES: Case[] = [
       "Selected clothing as the initial category because fabric, colour, fit, stitching, prints, embroidery, and branding make product-accuracy problems visible, measurable, and commercially important.",
       "Created a repeatable workflow architecture covering the complete prompt, recommended AI tool, common generation mistakes, correction prompts, execution guidance, marketplace considerations, and product-fidelity constraints.",
       "Developed and tested instructions designed to preserve the original product's colour, texture, shape, proportions, stitching, branding, packaging, and all visible details across white-background, lifestyle, flat-lay, detail, front-and-back, size-guide, and packaging use cases.",
-      "Built and deployed the responsive platform using Lovable, React, TypeScript, TanStack Router, GitHub, and Vercel, while resolving routing and workflow-detail-page issues.",
+      "Built and deployed the responsive platform using React, TypeScript, TanStack Router, GitHub, and Vercel, while resolving routing and workflow-detail-page issues.",
       "Led the product positioning, information architecture, SEO, brand system, educational content, community outreach, and organic go-to-market strategy for e-commerce and D2C sellers.",
     ],
     outcome:
@@ -165,7 +165,7 @@ const CASES: Case[] = [
       {
         label: "TOOLS",
         value:
-          "Lovable · React · TypeScript · TanStack Router · GitHub · Vercel · ChatGPT · Canva · Figma",
+          "React · TypeScript · TanStack Router · GitHub · Vercel · ChatGPT",
       },
       {
         label: "SKILLS",
