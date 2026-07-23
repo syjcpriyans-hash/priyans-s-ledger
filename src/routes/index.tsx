@@ -575,79 +575,117 @@ function Toolkit() {
 /* -------------------------------------------------------------------------- */
 
 function Contact() {
+  const navigation = [
+    ["Home", "#top"],
+    ["About", "#about"],
+    ["Skills", "#toolkit"],
+    ["Portfolio", "#work"],
+  ];
+
   return (
     <footer id="contact" className="border-t border-rule bg-paper text-ink">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <div className="ref-code" style={{ color: "var(--color-khaki)", opacity: 1 }}>
-          SECTION / 06 — CONTACT
-        </div>
-        <h2 className="mt-3 font-serif text-4xl text-ink sm:text-5xl">
-          Let's talk.
-        </h2>
-        <p className="mt-4 max-w-xl font-serif text-xl text-ink/85">
-          Hiring, admissions, collaborations, or just want to compare notes on
-          Indian SME markets — reach out.
-        </p>
-
-        <div className="mt-12 grid grid-cols-1 gap-8 border-t border-rule pt-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.7fr_1.15fr_1fr] lg:gap-12">
           <div>
-            <div className="ref-code" style={{ color: "var(--color-khaki)", opacity: 1 }}>
-              EMAIL
+            <div className="flex items-center gap-3">
+              <span
+                aria-hidden
+                className="flex size-12 shrink-0 items-center justify-center rounded-full border border-ink font-mono text-sm font-semibold text-ink"
+              >
+                PR
+              </span>
+              <div className="font-serif text-2xl font-semibold tracking-tight text-ink">
+                Priyans Kevadia
+              </div>
             </div>
+
+            <p className="mt-5 max-w-sm text-base leading-relaxed text-ink/75">
+              Commerce student applying AI, marketing, and systems thinking to
+              solve modern business challenges.
+            </p>
+
+            <div className="mt-6">
+              <a
+                href="https://www.linkedin.com/in/priyans-kevadia-29805b334/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 items-center border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
+              >
+                LinkedIn ↗
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="ref-code text-ink">Navigation</h3>
+            <nav aria-label="Footer navigation" className="mt-5">
+              <ul className="space-y-3">
+                {navigation.map(([label, href]) => (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      className="text-base text-ink/75 transition-colors hover:text-stamp"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          <div>
+            <h3 className="ref-code text-ink">Contact</h3>
+            <address className="mt-5 space-y-4 not-italic">
+              <div>
+                <div className="ref-code">Email</div>
+                <a
+                  href="mailto:priyans.kevadia@torontomu.ca"
+                  className="mt-1 block break-all text-base text-ink/75 underline decoration-ink/25 underline-offset-4 transition-colors hover:text-stamp hover:decoration-stamp"
+                >
+                  priyans.kevadia@torontomu.ca
+                </a>
+              </div>
+
+              <div>
+                <div className="ref-code">Phone</div>
+                <a
+                  href="tel:+14378585011"
+                  className="mt-1 block text-base text-ink/75 underline decoration-ink/25 underline-offset-4 transition-colors hover:text-stamp hover:decoration-stamp"
+                >
+                  +1 437-858-5011
+                </a>
+              </div>
+
+              <div>
+                <div className="ref-code">Location</div>
+                <p className="mt-1 text-base text-ink/75">
+                  Mississauga, ON, Canada
+                </p>
+              </div>
+            </address>
+          </div>
+
+          <div>
+            <h3 className="ref-code text-ink">Let&apos;s work together</h3>
+            <p className="mt-5 text-base leading-relaxed text-ink/75">
+              Interested in AI automation, marketing, or business projects?
+              Let&apos;s connect.
+            </p>
+
             <a
-              href="mailto:hello@example.com"
-              className="mt-2 block break-all font-serif text-2xl text-ink underline decoration-stamp decoration-2 underline-offset-[6px] hover:decoration-ink"
+              href="mailto:priyans.kevadia@torontomu.ca"
+              className="ledger-link mt-6 inline-block font-mono text-xs uppercase tracking-[0.12em]"
             >
-              hello@example.com
+              Start a conversation ↗
             </a>
           </div>
-          <div>
-            <div className="ref-code" style={{ color: "var(--color-khaki)", opacity: 1 }}>
-              ELSEWHERE
-            </div>
-            <ul className="mt-2 space-y-2 font-mono text-sm">
-              {[
-                ["listingsready.com", "https://listingsready.com"],
-                ["Product Hunt", "#"],
-                ["Instagram", "#"],
-                ["LinkedIn", "#"],
-              ].map(([label, href]) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    className="text-ink/90 underline decoration-ink/30 underline-offset-4 hover:text-ink hover:decoration-stamp"
-                  >
-                    {label} ↗
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-3">
-          <a
-            href="/priyans-resume.pdf"
-            download
-            className="inline-flex min-h-11 items-center gap-2 rounded-sm bg-ink px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-stamp"
-          >
-            Resume · PDF ↗
-          </a>
-        </div>
-
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
-          <span
-            className="ref-code"
-            style={{ color: "var(--color-khaki)", opacity: 1 }}
-          >
-            PRIYANS / MANIFEST / © 2026
-          </span>
-          <span
-            className="ref-code"
-            style={{ color: "var(--color-khaki)", opacity: 1 }}
-          >
-            CANADA → INDIA
-          </span>
+        <div className="mt-14 border-t border-rule pt-6 text-center">
+          <p className="font-mono text-xs tracking-[0.04em] text-khaki">
+            © 2026 Priyans. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
