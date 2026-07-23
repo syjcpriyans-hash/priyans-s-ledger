@@ -5,9 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * "The Manifest" — Priyans portfolio design system.
- * Paper + ledger palette. IBM Plex Serif / Sans / Mono, one family, three roles.
- * All colors in oklch.
+ * Priyans Kevadia portfolio design system.
+ * Paper, ink, ledger blue, khaki and oxblood accents.
  */
 
 @theme inline {
@@ -36,7 +35,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Portfolio semantic tokens */
   --color-paper: var(--paper);
   --color-ink: var(--ink);
   --color-stamp: var(--stamp);
@@ -52,15 +50,13 @@
 :root {
   --radius: 0.25rem;
 
-  /* Brand palette — oklch equivalents of the spec hexes */
-  --paper: oklch(0.965 0.003 180);        /* #F4F6F5 cool off-white */
-  --ink: oklch(0.22 0.02 260);            /* #14181F near-black navy */
-  --stamp: oklch(0.44 0.13 25);           /* #8C2F2F oxblood */
-  --ledger: oklch(0.42 0.07 250);         /* #2C4A6E ledger blue */
-  --khaki: oklch(0.52 0.05 105);          /* #6B6F47 tag khaki */
+  --paper: oklch(0.965 0.003 180);
+  --ink: oklch(0.22 0.02 260);
+  --stamp: oklch(0.44 0.13 25);
+  --ledger: oklch(0.42 0.07 250);
+  --khaki: oklch(0.52 0.05 105);
   --rule: oklch(0.86 0.005 240);
 
-  /* Shadcn mappings */
   --background: var(--paper);
   --foreground: var(--ink);
   --card: var(--paper);
@@ -100,9 +96,16 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
+  }
+
+  button {
+    cursor: pointer;
   }
 
   ::selection {
@@ -112,182 +115,48 @@
 
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid var(--color-ledger);
+    outline: 2px solid #ff6a3d;
     outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.001ms !important;
       transition-duration: 0.001ms !important;
     }
   }
 }
 
-/* Reference code / tag / mono-caps chip */
-@utility ref-code {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-khaki);
-}
-
-/* Status stamp — oxblood, rectangular, outlined, slight rotate */
-@utility status-stamp {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-stamp);
-  border: 1.5px solid var(--color-stamp);
-  padding: 0.2rem 0.55rem;
-  border-radius: 2px;
-  background: color-mix(in oklab, var(--color-stamp) 5%, transparent);
-}
-
-/* Ledger underline for inline links */
 @utility ledger-link {
   color: var(--color-ledger);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color 120ms ease;
-  &:hover { color: var(--color-stamp); }
+
+  &:hover {
+    color: var(--color-stamp);
+  }
 }
 
-/* Scroll-triggered reveal — one per case study */
-@utility reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 600ms ease, transform 600ms ease;
-  &.is-visible {
+@keyframes work-modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-/* Labeled placeholder frame for artifact images not yet ready */
-@utility artifact-frame {
-  position: relative;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      color-mix(in oklab, var(--color-ink) 4%, transparent) 0 1px,
-      transparent 1px 12px
-    ),
-    var(--color-paper);
-  border: 1px solid var(--color-ink);
+.work-modal-panel {
+  animation: work-modal-enter 220ms ease-out both;
 }
-
-/*
- * Remove decorative portfolio numbering and archival-style reference codes.
- * Meaningful labels such as Problem, Build, Outcome, Stack, Role and Status remain.
- */
-#top > div > .ref-code:first-child,
-#about > div > div:first-child > .ref-code:first-child,
-#work > div:first-child > .ref-code:first-child,
-#work article > div > .flex:first-child > .flex:first-child,
-#work .artifact-frame > div > div:first-child > .ref-code:first-child,
-#more > div > div:first-child > div:first-child > .ref-code:first-child,
-#more > div > div:first-child > .ref-code:last-child,
-#more .grid > div > .flex:first-child > .ref-code:first-child,
-#toolkit > div > .ref-code:first-child,
-#contact > div > .ref-code:first-child {
-  display: none;
-}
-
-/* Replace coded identity labels with simple, readable branding. */
-header a.ref-code[href="#top"],
-#contact > div > div:last-child span.ref-code:first-child {
-  font-size: 0;
-  letter-spacing: 0;
-}
-
-header a.ref-code[href="#top"]::after {
-  content: "Priyans Kevadia";
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  text-transform: none;
-  color: var(--color-ink);
-}
-
-#contact > div > div:last-child span.ref-code:first-child::after {
-  content: "Priyans © 2026";
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  color: var(--color-paper);
-}
-
-/* Remove leftover spacing where the decorative labels previously appeared. */
-#about h2,
-#work > div:first-child h2,
-#more > div > div:first-child h2,
-#toolkit h2,
-#contact > div > h2 {
-  margin-top: 0;
-}
-
-/* Larger, clearer portfolio header. */
-header > div {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-header nav a.ref-code {
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-}
-
-/* Visually replace the hero name with the portfolio positioning. */
-#top h1 {
-  font-size: 0;
-}
-
-#top h1::after {
-  content: "AI Enthusiast";
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  color: var(--color-ink);
-}
-
-@media (min-width: 40rem) {
-  header a.ref-code[href="#top"]::after {
-    font-size: 1.5rem;
-  }
-
-  header nav a.ref-code {
-    font-size: 0.88rem;
-  }
-
-  #top h1::after {
-    font-size: 4.5rem;
-  }
-}
-
-/* Updated About section copy. */
-#about .max-w-2xl > p {
-  display: none;
-}
-
-#about .max-w-2xl::after {
-  content: "I’m a 4th-year Marketing student at Toronto Metropolitan University, focused on combining business, technology, and AI. I work with data workflows, documentation systems, and contribute to website development and SEO optimization. I’m passionate about using AI and digital tools to streamline processes and build practical solutions that drive real business impact.";
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  line-height: 1.625;
-  color: var(--color-ink);
-}
-
