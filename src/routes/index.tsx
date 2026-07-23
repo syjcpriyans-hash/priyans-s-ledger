@@ -132,7 +132,12 @@ type Case = {
   build: string[];
   outcome: string;
   meta: { label: string; value: string }[];
-  artifact: { label: string; caption: string };
+  artifact: {
+    label: string;
+    caption: string;
+    image?: string;
+    alt?: string;
+  };
   links?: { label: string; href: string }[];
 };
 
@@ -174,9 +179,11 @@ const CASES: Case[] = [
       },
     ],
     artifact: {
-      label: "ListingsReady — live workflow platform",
+      label: "ListingsReady — live website",
       caption:
-        "A structured library of tested AI workflows for accurate apparel product photography.",
+        "Live homepage screenshot showing the workflow platform and product positioning.",
+      image: "/listingsready-website-proof.png",
+      alt: "ListingsReady website homepage showing its navigation, product-photography value proposition, example product images, and latest workflow additions.",
     },
     links: [
       { label: "Visit ListingsReady", href: "https://listingsready.com" },
@@ -335,19 +342,54 @@ function CaseModal({
           </div>
 
           <aside>
-            <div className="artifact-frame aspect-[4/3] w-full">
-              <div className="flex h-full flex-col justify-between p-5">
-                <span className="ref-code">{project.category}</span>
-                <div>
+            {project.artifact.image ? (
+              <figure>
+                <a
+                  href={project.artifact.image}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block border border-ink bg-paper p-2 transition-opacity hover:opacity-90"
+                  aria-label={`View full-size image: ${project.artifact.label}`}
+                >
+                  <img
+                    src={project.artifact.image}
+                    alt={project.artifact.alt ?? project.artifact.label}
+                    className="block h-auto w-full"
+                    loading="lazy"
+                  />
+                </a>
+                <figcaption className="mt-3">
                   <div className="font-mono text-sm uppercase tracking-wide text-ink">
                     {project.artifact.label}
                   </div>
-                  <div className="mt-1 font-mono text-xs text-khaki">
+                  <div className="mt-1 font-mono text-xs leading-relaxed text-khaki">
                     {project.artifact.caption}
+                  </div>
+                  <a
+                    href={project.artifact.image}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="ledger-link mt-2 inline-block font-mono text-xs uppercase tracking-[0.1em]"
+                  >
+                    View full screenshot ↗
+                  </a>
+                </figcaption>
+              </figure>
+            ) : (
+              <div className="artifact-frame aspect-[4/3] w-full">
+                <div className="flex h-full flex-col justify-between p-5">
+                  <span className="ref-code">{project.category}</span>
+                  <div>
+                    <div className="font-mono text-sm uppercase tracking-wide text-ink">
+                      {project.artifact.label}
+                    </div>
+                    <div className="mt-1 font-mono text-xs text-khaki">
+                      {project.artifact.caption}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <dl className="mt-6 space-y-5 border-t border-rule pt-5">
               {project.meta.map((item) => (
