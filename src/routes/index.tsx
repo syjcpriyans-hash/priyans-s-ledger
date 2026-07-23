@@ -139,33 +139,47 @@ type Case = {
 const CASES: Case[] = [
   {
     code: "WORK/01",
-    category: "AI PRODUCT",
+    category: "AI PRODUCT · E-COMMERCE",
     status: "LIVE",
     title: "ListingsReady",
     summary:
-      "A structured AI workflow library for accurate e-commerce product photography.",
+      "An AI workflow platform that helps e-commerce sellers create professional product images while preserving exact product accuracy.",
     problem:
-      "E-commerce sellers need consistent AI image-generation prompts for product photography. No organized library existed — every seller was reinventing prompts from scratch.",
+      "Small e-commerce sellers often cannot justify professional photography for every listing. Generative AI can reduce production time and cost, but it frequently changes commercially important details such as colour, texture, shape, proportions, stitching, logos, prints, packaging, and labels. These inaccuracies can create misleading listings, weaken customer trust, increase returns, and introduce marketplace-compliance risk.",
     build: [
-      "React / TypeScript app deployed on Vercel, live at listingsready.com.",
-      "Built the full data layer: 30 prompt workflows across apparel subcategories.",
-      "Solved TanStack Router nested-routing bugs blocking deep-linked workflow pages.",
-      "Stripped platform-specific branding from workflow titles; rebuilt the detail-page UI.",
+      "Defined the product as a structured workflow layer rather than another image generator. I deliberately excluded user accounts, image uploads, automatic product detection, and AI validation from the first version so I could launch faster and test the core value proposition before investing in heavier infrastructure.",
+      "Selected clothing as the initial category because fabric, colour, fit, stitching, prints, embroidery, and branding make product-accuracy problems visible, measurable, and commercially important.",
+      "Created a repeatable workflow architecture covering the complete prompt, recommended AI tool, common generation mistakes, correction prompts, execution guidance, marketplace considerations, and product-fidelity constraints.",
+      "Developed and tested instructions designed to preserve the original product's colour, texture, shape, proportions, stitching, branding, packaging, and all visible details across white-background, lifestyle, flat-lay, detail, front-and-back, size-guide, and packaging use cases.",
+      "Built and deployed the responsive platform using Lovable, React, TypeScript, TanStack Router, GitHub, and Vercel, while resolving routing and workflow-detail-page issues.",
+      "Led the product positioning, information architecture, SEO, brand system, educational content, community outreach, and organic go-to-market strategy for e-commerce and D2C sellers.",
     ],
     outcome:
-      "Live product, featured on Product Hunt. Promoted through an ongoing Instagram / Facebook / TikTok carousel series on a fixed brand template.",
+      "ListingsReady became a live product with an initial library of 30 apparel workflows, a defined target customer, a scalable content system, and an organic distribution strategy. The project demonstrates end-to-end ownership across customer-problem research, market positioning, MVP scoping, prompt engineering, UX planning, front-end execution, deployment, SEO, and go-to-market development.",
     meta: [
-      { label: "STACK", value: "React · TS · TanStack Router · Vercel" },
-      { label: "ROLE", value: "Design, data, engineering" },
-      { label: "STATE", value: "Shipped · in market" },
+      {
+        label: "ROLE",
+        value:
+          "Founder · Product strategist · Prompt engineer · Front-end contributor",
+      },
+      {
+        label: "TOOLS",
+        value:
+          "Lovable · React · TypeScript · TanStack Router · GitHub · Vercel · ChatGPT · Canva · Figma",
+      },
+      {
+        label: "SKILLS",
+        value:
+          "Customer research · Product positioning · MVP scoping · Workflow design · Prompt engineering · UX · SEO · Organic marketing",
+      },
     ],
     artifact: {
-      label: "listingsready.com — workflow library",
-      caption: "Screenshot placeholder — replace with a real capture.",
+      label: "ListingsReady — live workflow platform",
+      caption:
+        "A structured library of tested AI workflows for accurate apparel product photography.",
     },
     links: [
-      { label: "listingsready.com", href: "https://listingsready.com" },
-      { label: "Product Hunt", href: "#" },
+      { label: "Visit ListingsReady", href: "https://listingsready.com" },
     ],
   },
   {
