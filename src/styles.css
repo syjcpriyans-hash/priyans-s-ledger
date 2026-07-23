@@ -53,7 +53,7 @@
   --radius: 0.25rem;
 
   /* Brand palette — oklch equivalents of the spec hexes */
-  --paper: oklch(0.965 0.003 180);        /* #F4F6F5 cool off-white */
+  --paper: oklch(1 0 0);                  /* #FFFFFF pure white */
   --ink: oklch(0.22 0.02 260);            /* #14181F near-black navy */
   --stamp: oklch(0.44 0.13 25);           /* #8C2F2F oxblood */
   --ledger: oklch(0.42 0.07 250);         /* #2C4A6E ledger blue */
@@ -69,9 +69,9 @@
   --popover-foreground: var(--ink);
   --primary: var(--ink);
   --primary-foreground: var(--paper);
-  --secondary: oklch(0.93 0.005 240);
+  --secondary: oklch(1 0 0);
   --secondary-foreground: var(--ink);
-  --muted: oklch(0.93 0.005 240);
+  --muted: oklch(1 0 0);
   --muted-foreground: oklch(0.44 0.02 260);
   --accent: var(--ledger);
   --accent-foreground: var(--paper);
@@ -174,13 +174,7 @@
 /* Labeled placeholder frame for artifact images not yet ready */
 @utility artifact-frame {
   position: relative;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      color-mix(in oklab, var(--color-ink) 4%, transparent) 0 1px,
-      transparent 1px 12px
-    ),
-    var(--color-paper);
+  background: #ffffff;
   border: 1px solid var(--color-ink);
 }
 
@@ -224,7 +218,7 @@ header a.ref-code[href="#top"]::after {
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   text-transform: none;
-  color: var(--color-paper);
+  color: var(--color-ink);
 }
 
 /* Remove leftover spacing where the decorative labels previously appeared. */
@@ -289,5 +283,103 @@ header nav a.ref-code {
   font-size: 1.25rem;
   line-height: 1.625;
   color: var(--color-ink);
+}
+
+/* Pure-white surface system and cross-device safeguards. */
+html,
+body {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+body,
+main,
+header,
+section,
+footer {
+  background-color: #ffffff;
+}
+
+main,
+section,
+footer,
+header,
+article,
+div,
+nav {
+  min-width: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+span,
+dd,
+li {
+  overflow-wrap: anywhere;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+header nav {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+header nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keep project-card padding white; grey is used only for the 1px dividers. */
+#work > div:nth-of-type(2) {
+  background: #ffffff;
+}
+
+/* Prevent the case-study dialog from exceeding short mobile viewports. */
+#work [role="dialog"] {
+  max-height: calc(100dvh - 1.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Small-phone refinements; desktop UI remains unchanged. */
+@media (max-width: 30rem) {
+  #top h1::after {
+    font-size: 2.55rem;
+  }
+
+  #top .mt-12 > a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #work button[aria-label^="Open case study"] {
+    min-height: 17rem;
+  }
+
+  #contact a[href^="mailto:"] {
+    font-size: 1.35rem;
+  }
 }
 

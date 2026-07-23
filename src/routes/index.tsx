@@ -28,12 +28,12 @@ export const Route = createFileRoute("/")({
 
 function TopBar() {
   return (
-    <header className="sticky top-0 z-40 border-b border-rule bg-paper/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+    <header className="sticky top-0 z-40 border-b border-rule bg-paper/95 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 sm:flex-nowrap sm:px-6">
         <a href="#top" className="ref-code text-ink">
           PRIYANS / PORTFOLIO — 2026
         </a>
-        <nav className="hidden gap-6 sm:flex">
+        <nav className="flex w-full items-center gap-4 overflow-x-auto pb-1 sm:w-auto sm:gap-6 sm:overflow-visible sm:pb-0">
           {[
             ["Work", "#work"],
             ["More", "#more"],
@@ -59,7 +59,7 @@ function TopBar() {
 function Hero() {
   return (
     <section id="top" className="border-b border-rule">
-      <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 sm:pt-28 sm:pb-32">
+      <div className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 sm:pt-28 sm:pb-32">
         <div className="ref-code mb-8">MANIFEST / 01 — INDEX</div>
         <h1 className="font-serif text-5xl leading-[1.05] tracking-tight text-ink sm:text-7xl">
           Priyans
@@ -101,7 +101,7 @@ function Hero() {
 function About() {
   return (
     <section id="about" className="border-b border-rule">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-20 md:grid-cols-[220px_1fr]">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-16 sm:px-6 sm:py-20 md:grid-cols-[220px_1fr] md:gap-10">
         <div>
           <div className="ref-code">SECTION / 02</div>
           <h2 className="mt-2 font-serif text-2xl text-ink">About</h2>
@@ -237,7 +237,7 @@ function CaseModal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-ink/55 px-4 py-8 backdrop-blur-sm sm:px-6"
+      className="fixed inset-0 z-50 overflow-y-auto bg-ink/55 px-3 py-3 backdrop-blur-sm sm:px-6 sm:py-8"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -246,9 +246,9 @@ function CaseModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="case-modal-title"
-        className="mx-auto max-w-5xl border border-ink bg-paper shadow-2xl"
+        className="mx-auto w-full max-w-5xl overflow-hidden border border-ink bg-paper shadow-2xl"
       >
-        <div className="flex items-start justify-between gap-6 border-b border-rule p-6 sm:p-8">
+        <div className="flex flex-col items-start justify-between gap-5 border-b border-rule p-5 sm:flex-row sm:gap-6 sm:p-8">
           <div>
             <div className="flex flex-wrap items-center gap-3">
               <span className="ref-code text-ink">{project.category}</span>
@@ -256,11 +256,11 @@ function CaseModal({
             </div>
             <h3
               id="case-modal-title"
-              className="mt-5 font-serif text-4xl leading-tight text-ink sm:text-5xl"
+              className="mt-5 font-serif text-3xl leading-tight text-ink sm:text-5xl"
             >
               {project.title}
             </h3>
-            <p className="mt-4 max-w-2xl font-serif text-xl leading-relaxed text-ink/85">
+            <p className="mt-4 max-w-2xl font-serif text-lg leading-relaxed text-ink/85 sm:text-xl">
               {project.summary}
             </p>
           </div>
@@ -268,14 +268,14 @@ function CaseModal({
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 border border-ink px-3 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
+            className="min-h-11 shrink-0 self-end border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper sm:self-auto"
             aria-label="Close project details"
           >
             Close
           </button>
         </div>
 
-        <div className="grid grid-cols-1 gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <div className="grid grid-cols-1 gap-8 p-5 sm:gap-10 sm:p-8 lg:grid-cols-[minmax(0,1fr)_300px]">
           <div className="space-y-10">
             <section className="grid grid-cols-1 gap-3 border-t border-rule pt-5 sm:grid-cols-[110px_1fr]">
               <h4 className="ref-code pt-1">Problem</h4>
@@ -381,7 +381,7 @@ function Work() {
 
   return (
     <section id="work" className="border-b border-rule">
-      <div className="mx-auto max-w-6xl px-6 pt-20 pb-4">
+      <div className="mx-auto max-w-6xl px-4 pt-16 pb-4 sm:px-6 sm:pt-20">
         <div className="ref-code">SECTION / 03</div>
         <h2 className="mt-2 font-serif text-3xl text-ink sm:text-4xl">
           Featured work
@@ -391,13 +391,14 @@ function Work() {
         </p>
       </div>
 
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-px bg-rule px-6 pt-8 pb-20 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto max-w-6xl px-4 pt-8 pb-16 sm:px-6 sm:pb-20">
+        <div className="grid grid-cols-1 gap-px border border-rule bg-rule md:grid-cols-2 lg:grid-cols-3">
         {CASES.map((project) => (
           <button
             key={project.code}
             type="button"
             onClick={() => setSelectedProject(project)}
-            className="group flex min-h-[350px] flex-col bg-paper p-6 text-left outline-none transition-colors hover:bg-secondary focus-visible:relative focus-visible:z-10 sm:p-7"
+            className="group flex min-h-[300px] min-w-0 flex-col bg-paper p-5 text-left outline-none transition-shadow hover:shadow-[inset_0_0_0_1px_var(--color-ink)] focus-visible:relative focus-visible:z-10 sm:min-h-[350px] sm:p-7"
             aria-label={`Open case study for ${project.title}`}
           >
             <div className="flex items-start justify-between gap-4">
@@ -412,7 +413,7 @@ function Work() {
 
             <div className="mt-8">
               <span className="status-stamp">{project.status}</span>
-              <h3 className="mt-5 font-serif text-3xl leading-tight text-ink">
+              <h3 className="mt-5 font-serif text-2xl leading-tight text-ink sm:text-3xl">
                 {project.title}
               </h3>
               <p className="mt-4 text-base leading-relaxed text-ink/75">
@@ -431,6 +432,7 @@ function Work() {
             </div>
           </button>
         ))}
+        </div>
       </div>
 
       {selectedProject && (
@@ -468,8 +470,8 @@ const MORE = [
 
 function More() {
   return (
-    <section id="more" className="border-b border-rule bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+    <section id="more" className="border-b border-rule bg-paper">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="flex items-end justify-between">
           <div>
             <div className="ref-code">SECTION / 04</div>
@@ -542,7 +544,7 @@ const TOOLKIT: { group: string; items: string[] }[] = [
 function Toolkit() {
   return (
     <section id="toolkit" className="border-b border-rule">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="ref-code">SECTION / 05</div>
         <h2 className="mt-2 font-serif text-3xl text-ink sm:text-4xl">Toolkit</h2>
         <div className="mt-10 space-y-8">
@@ -574,33 +576,33 @@ function Toolkit() {
 
 function Contact() {
   return (
-    <footer id="contact" className="bg-ink text-paper">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="ref-code" style={{ color: "var(--color-paper)", opacity: 0.6 }}>
+    <footer id="contact" className="border-t border-rule bg-paper text-ink">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <div className="ref-code" style={{ color: "var(--color-khaki)", opacity: 1 }}>
           SECTION / 06 — CONTACT
         </div>
-        <h2 className="mt-3 font-serif text-4xl text-paper sm:text-5xl">
+        <h2 className="mt-3 font-serif text-4xl text-ink sm:text-5xl">
           Let's talk.
         </h2>
-        <p className="mt-4 max-w-xl font-serif text-xl text-paper/85">
+        <p className="mt-4 max-w-xl font-serif text-xl text-ink/85">
           Hiring, admissions, collaborations, or just want to compare notes on
           Indian SME markets — reach out.
         </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-8 border-t border-paper/20 pt-8 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-8 border-t border-rule pt-8 md:grid-cols-2">
           <div>
-            <div className="ref-code" style={{ color: "var(--color-paper)", opacity: 0.6 }}>
+            <div className="ref-code" style={{ color: "var(--color-khaki)", opacity: 1 }}>
               EMAIL
             </div>
             <a
               href="mailto:hello@example.com"
-              className="mt-2 block font-serif text-2xl text-paper underline decoration-stamp decoration-2 underline-offset-[6px] hover:decoration-paper"
+              className="mt-2 block break-all font-serif text-2xl text-ink underline decoration-stamp decoration-2 underline-offset-[6px] hover:decoration-ink"
             >
               hello@example.com
             </a>
           </div>
           <div>
-            <div className="ref-code" style={{ color: "var(--color-paper)", opacity: 0.6 }}>
+            <div className="ref-code" style={{ color: "var(--color-khaki)", opacity: 1 }}>
               ELSEWHERE
             </div>
             <ul className="mt-2 space-y-2 font-mono text-sm">
@@ -613,7 +615,7 @@ function Contact() {
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-paper/90 underline decoration-paper/30 underline-offset-4 hover:text-paper hover:decoration-stamp"
+                    className="text-ink/90 underline decoration-ink/30 underline-offset-4 hover:text-ink hover:decoration-stamp"
                   >
                     {label} ↗
                   </a>
@@ -627,22 +629,22 @@ function Contact() {
           <a
             href="/priyans-resume.pdf"
             download
-            className="inline-flex items-center gap-2 rounded-sm bg-paper px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] text-ink transition-colors hover:bg-stamp hover:text-paper"
+            className="inline-flex min-h-11 items-center gap-2 rounded-sm bg-ink px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-stamp"
           >
             Resume · PDF ↗
           </a>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-paper/15 pt-6">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
           <span
             className="ref-code"
-            style={{ color: "var(--color-paper)", opacity: 0.55 }}
+            style={{ color: "var(--color-khaki)", opacity: 1 }}
           >
             PRIYANS / MANIFEST / © 2026
           </span>
           <span
             className="ref-code"
-            style={{ color: "var(--color-paper)", opacity: 0.55 }}
+            style={{ color: "var(--color-khaki)", opacity: 1 }}
           >
             CANADA → INDIA
           </span>
