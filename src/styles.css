@@ -209,11 +209,11 @@ header a.ref-code[href="#top"],
 }
 
 header a.ref-code[href="#top"]::after {
-  content: "Priyans";
+  content: "Priyans Kevadia";
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-transform: none;
   color: var(--color-ink);
 }
@@ -235,3 +235,45 @@ header a.ref-code[href="#top"]::after {
 #contact > div > h2 {
   margin-top: 0;
 }
+
+/* Larger, clearer portfolio header. */
+header > div {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+header nav a.ref-code {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* Visually replace the hero name with the portfolio positioning. */
+#top h1 {
+  font-size: 0;
+}
+
+#top h1::after {
+  content: "AI Enthusiast";
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+}
+
+@media (min-width: 40rem) {
+  header a.ref-code[href="#top"]::after {
+    font-size: 1.5rem;
+  }
+
+  header nav a.ref-code {
+    font-size: 0.88rem;
+  }
+
+  #top h1::after {
+    font-size: 4.5rem;
+  }
+}
+
