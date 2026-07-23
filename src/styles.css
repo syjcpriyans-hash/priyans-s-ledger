@@ -183,3 +183,55 @@
     var(--color-paper);
   border: 1px solid var(--color-ink);
 }
+
+/*
+ * Remove decorative portfolio numbering and archival-style reference codes.
+ * Meaningful labels such as Problem, Build, Outcome, Stack, Role and Status remain.
+ */
+#top > div > .ref-code:first-child,
+#about > div > div:first-child > .ref-code:first-child,
+#work > div:first-child > .ref-code:first-child,
+#work article > div > .flex:first-child > .flex:first-child,
+#work .artifact-frame > div > div:first-child > .ref-code:first-child,
+#more > div > div:first-child > div:first-child > .ref-code:first-child,
+#more > div > div:first-child > .ref-code:last-child,
+#more .grid > div > .flex:first-child > .ref-code:first-child,
+#toolkit > div > .ref-code:first-child,
+#contact > div > .ref-code:first-child {
+  display: none;
+}
+
+/* Replace coded identity labels with simple, readable branding. */
+header a.ref-code[href="#top"],
+#contact > div > div:last-child span.ref-code:first-child {
+  font-size: 0;
+  letter-spacing: 0;
+}
+
+header a.ref-code[href="#top"]::after {
+  content: "Priyans";
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--color-ink);
+}
+
+#contact > div > div:last-child span.ref-code:first-child::after {
+  content: "Priyans © 2026";
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--color-paper);
+}
+
+/* Remove leftover spacing where the decorative labels previously appeared. */
+#about h2,
+#work > div:first-child h2,
+#more > div > div:first-child h2,
+#toolkit h2,
+#contact > div > h2 {
+  margin-top: 0;
+}
