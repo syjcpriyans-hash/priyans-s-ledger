@@ -99,7 +99,9 @@ function About() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-16 sm:px-6 sm:py-20 md:grid-cols-[220px_1fr] md:gap-10">
         <div>
           <div className="ref-code">SECTION / 02</div>
-          <h2 className="mt-2 font-serif text-2xl text-ink">About</h2>
+          <h2 className="mt-2 font-serif text-3xl text-ink sm:text-4xl">
+            About
+          </h2>
         </div>
         <div className="max-w-2xl font-serif text-xl leading-relaxed text-ink">
           <p>
