@@ -8,13 +8,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone operations system, and the India market research.",
+          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone Excel system, and the Delmen shipping workflow.",
       },
       { property: "og:title", content: "Priyans — Builder, Researcher, Operator" },
       {
         property: "og:description",
         content:
-          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone operations system, and the India market research.",
+          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone Excel system, and the Delmen shipping workflow.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -257,28 +257,51 @@ const CASES: Case[] = [
   },
   {
     code: "WORK/03",
-    category: "RESEARCH",
-    status: "ONGOING",
-    title: "India Market Research",
+    category: "WORKPLACE SYSTEM · LOGISTICS",
+    status: "IN USE",
+    title: "Delmen Shipping Quote & Tracking System",
     summary:
-      "Structured opportunity research across AI automation and Indian D2C markets.",
+      "An Excel-based logistics workflow used at Delmen Pharmacy and Medical Equipment to compare carrier quotes, standardize shipment data, retrieve tracking links, and monitor delivery timelines.",
     problem:
-      "Where's the real whitespace in Indian AI automation, and which D2C product categories can one person actually run?",
+      "Delmen ships pharmacy and medical equipment to customers across Canada. Each shipment may require quotes from multiple carriers with different prices, transit times, and service levels. Managing quote information, customer details, booked shipments, tracking numbers, carrier links, and delivery status across separate records created repeated data entry and made shipment information slower to retrieve.",
     build: [
-      "Track 1 · AI automation — tier-2/3 SME focus. WhatsApp-native, vernacular / Hinglish workflows. Vertical-specific productized services. Broader scan across health, edtech, agri-tech, logistics, fintech, senior care.",
-      "Track 2 · D2C — evaluated skincare, supplements, pet care, print-on-demand, digital products against single-operator feasibility, automation potential, and impulse-buy price points. Went deep on hard-water shower filters: competitor and sourcing analysis.",
-      "Run as a remote research framework operated from Canada with in-market contacts.",
+      "Mapped the full quote-to-shipment workflow used in my day-to-day shipping responsibilities and identified the information required at each stage.",
+      "Built a carrier Quote Tracker that records customer, pharmacy, destination, product, carrier, transit time, quoted amount, service level, quote number, and additional shipment items.",
+      "Created a connected Shipment Tracker for shipment date, customer, destination, carrier, expected delivery time, tracking number, delivery status, delay status, and carrier tracking links.",
+      "Automated repeated fields so the Shipment Tracker retrieves business name, city, province, transit time, and carrier link from the quote and master-data sheets.",
+      "Developed a supporting master-data architecture containing Canadian cities, province-specific city lists, carrier information, tracking links, and Delmen product codes.",
+      "Implemented Excel Tables, structured references, INDEX/MATCH, IF, IFERROR, named ranges, data-validation dropdowns, and cross-sheet lookup logic to keep data standardized and expandable.",
     ],
     outcome:
-      "[Findings pending — 3–4 sentence summary of the specific whitespace conclusions and the shortlist that came out of it will land here before this ships.]",
+      "The system is currently used in my work at Delmen Pharmacy and Medical Equipment to organize carrier quotes and shipment information in one structured workflow. It supports faster quote comparison, reduces repeated entry, centralizes tracking information, and improves visibility into expected delivery timelines without requiring a separate logistics platform.",
     meta: [
-      { label: "METHOD", value: "Two-track framework · remote-operated" },
-      { label: "SURFACE", value: "AI automation × D2C" },
-      { label: "STATE", value: "Ongoing · findings compiling" },
+      {
+        label: "ROLE",
+        value:
+          "Operations systems designer · Excel automation developer · Shipping workflow owner",
+      },
+      {
+        label: "USE",
+        value:
+          "Current workplace system · Canada-wide pharmacy and medical-equipment shipments",
+      },
+      {
+        label: "TOOLS",
+        value:
+          "Microsoft Excel · Excel Tables · INDEX/MATCH · IF/IFERROR · Named ranges · Data validation",
+      },
+      {
+        label: "SKILLS",
+        value:
+          "Workflow mapping · Logistics operations · Process improvement · Data architecture · Master-data management · Operational automation",
+      },
     ],
     artifact: {
-      label: "Category evaluation matrix — excerpt",
-      caption: "Placeholder for a real chart / table from the research doc.",
+      label: "Delmen — shipping operations workflow",
+      caption:
+        "Sanitized portfolio preview showing the carrier Quote Tracker and Shipment Tracker with fictional customer, quote, and tracking data.",
+      image: "/delmen-shipping-system-proof.png",
+      alt: "Sanitized Delmen Shipping Quote and Tracking System showing a carrier quote comparison table and a shipment tracking table with fictional data.",
     },
   },
 ];
