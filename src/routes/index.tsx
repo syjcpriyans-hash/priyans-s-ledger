@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,6 +36,7 @@ function TopBar() {
         <nav className="flex w-full items-center gap-4 overflow-x-auto pb-1 sm:w-auto sm:gap-6 sm:overflow-visible sm:pb-0">
           {[
             ["Work", "#work"],
+            ["AI School", "#ai-school"],
             ["More", "#more"],
             ["Toolkit", "#toolkit"],
             ["Contact", "#contact"],
@@ -638,6 +639,237 @@ function Work() {
   );
 }
 
+
+/* -------------------------------------------------------------------------- */
+
+type AIReel = {
+  title: string;
+  outcome: string;
+  tools: string;
+  image: string;
+  href: string;
+};
+
+const AI_REELS: AIReel[] = [
+  {
+    title: "Extract Business Data at Scale",
+    outcome:
+      "Learn how Claude and Apify can collect and organize high-volume business information for research and lead-generation workflows.",
+    tools: "Claude · Apify",
+    image: "/ai-school/extract-business-data.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+  {
+    title: "Design Professional Product Packaging",
+    outcome:
+      "See how AI can support packaging concepts, product positioning, and visual direction for a business.",
+    tools: "Claude · Gemini",
+    image: "/ai-school/product-packaging.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+  {
+    title: "Create Product Videos with AI",
+    outcome:
+      "Learn a practical workflow for turning product ideas and assets into short promotional videos.",
+    tools: "ChatGPT · Kling AI",
+    image: "/ai-school/product-videos.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+  {
+    title: "Develop Clothing Design Concepts",
+    outcome:
+      "Explore how generative AI can help businesses visualize clothing concepts before production.",
+    tools: "Gemini",
+    image: "/ai-school/clothing-designs.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+  {
+    title: "Create Product Photography",
+    outcome:
+      "Learn how AI can produce product-photo concepts for e-commerce, advertising, and social media.",
+    tools: "Gemini",
+    image: "/ai-school/product-photography.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+  {
+    title: "Automate Repetitive Business Emails",
+    outcome:
+      "See how ChatGPT can draft recurring customer, supplier, and operational emails more efficiently.",
+    tools: "ChatGPT",
+    image: "/ai-school/automate-emails.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+  {
+    title: "Design Social Media Content",
+    outcome:
+      "Learn a structured AI workflow for creating professional social-media concepts and branded posts.",
+    tools: "ChatGPT · Lovart",
+    image: "/ai-school/social-media-posts.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+  {
+    title: "Build a Professional Business Website",
+    outcome:
+      "See how an AI website builder can turn a business concept into a functional web presence.",
+    tools: "Lovable",
+    image: "/ai-school/business-website.jpg",
+    href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
+  },
+];
+
+function AISchool() {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const moveCarousel = (direction: 1 | -1) => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const distance = Math.max(carousel.clientWidth * 0.82, 300);
+    carousel.scrollBy({
+      left: distance * direction,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = window.setInterval(() => {
+      const carousel = carouselRef.current;
+      if (!carousel) return;
+
+      const isNearEnd =
+        carousel.scrollLeft + carousel.clientWidth >=
+        carousel.scrollWidth - 24;
+
+      if (isNearEnd) {
+        carousel.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        moveCarousel(1);
+      }
+    }, 6500);
+
+    return () => window.clearInterval(timer);
+  }, [isPaused]);
+
+  return (
+    <section id="ai-school" className="border-b border-rule bg-paper">
+      <div className="mx-auto max-w-6xl px-4 pt-16 sm:px-6 sm:pt-20">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="ref-code">SECTION / 04</div>
+            <h2 className="mt-2 max-w-3xl font-serif text-3xl leading-tight text-ink sm:text-4xl">
+              Turning AI Tools into Business Workflows
+            </h2>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink/75 sm:text-lg">
+              I created AI School for Business to translate emerging AI tools
+              into practical workflows for small-business owners. Through short
+              educational reels, I demonstrated applications across automation,
+              research, branding, content, product photography, and website
+              development.
+            </p>
+          </div>
+
+          <div className="flex shrink-0 gap-2">
+            <button
+              type="button"
+              onClick={() => moveCarousel(-1)}
+              className="flex size-11 items-center justify-center border border-ink font-serif text-xl text-ink transition-colors hover:bg-ink hover:text-paper"
+              aria-label="View previous AI School reel"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={() => moveCarousel(1)}
+              className="flex size-11 items-center justify-center border border-ink font-serif text-xl text-ink transition-colors hover:bg-ink hover:text-paper"
+              aria-label="View next AI School reel"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
+        <div
+          ref={carouselRef}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={() => setIsPaused(false)}
+          onPointerDown={() => setIsPaused(true)}
+        >
+          {AI_REELS.map((reel) => (
+            <a
+              key={reel.title}
+              href={reel.href}
+              target="_blank"
+              rel="noreferrer"
+              className="group min-w-[84%] snap-start border border-rule bg-paper transition-shadow hover:shadow-[0_0_0_1px_var(--color-ink)] sm:min-w-[47%] lg:min-w-[31%]"
+              aria-label={`View ${reel.title} on Instagram`}
+            >
+              <div className="overflow-hidden border-b border-rule bg-white">
+                <img
+                  src={reel.image}
+                  alt={`${reel.title} reel cover from AI School for Business`}
+                  className="aspect-[3/4] w-full object-cover transition-transform duration-300 group-hover:scale-[1.015]"
+                  loading="lazy"
+                />
+              </div>
+
+              <div className="flex min-h-[250px] flex-col p-5 sm:p-6">
+                <span className="ref-code text-ledger">AI SCHOOL FOR BUSINESS</span>
+                <h3 className="mt-4 font-serif text-2xl leading-tight text-ink">
+                  {reel.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink/75">
+                  {reel.outcome}
+                </p>
+
+                <div className="mt-auto border-t border-rule pt-5">
+                  <div className="ref-code">TOOLS</div>
+                  <div className="mt-1 font-mono text-xs leading-relaxed text-ink">
+                    {reel.tools}
+                  </div>
+                  <div className="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-ledger">
+                    View on Instagram ↗
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-7 grid grid-cols-1 gap-5 border-t border-rule pt-6 md:grid-cols-[1fr_auto] md:items-end">
+          <div>
+            <div className="ref-code">ROLE</div>
+            <p className="mt-2 font-mono text-xs leading-relaxed text-ink">
+              Founder · AI content strategist · Business educator
+            </p>
+            <div className="ref-code mt-5">SKILLS</div>
+            <p className="mt-2 font-mono text-xs leading-relaxed text-ink">
+              AI research · Business education · Content strategy · Workflow
+              design · Short-form communication · Audience building
+            </p>
+          </div>
+
+          <a
+            href="https://www.instagram.com/aischoolforbusiness/?hl=en"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-11 items-center justify-center border border-ink px-5 py-3 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
+          >
+            View @aischoolforbusiness ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* -------------------------------------------------------------------------- */
 
 const MORE = [
@@ -667,7 +899,7 @@ function More() {
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="flex items-end justify-between">
           <div>
-            <div className="ref-code">SECTION / 04</div>
+            <div className="ref-code">SECTION / 05</div>
             <h2 className="mt-2 font-serif text-3xl text-ink sm:text-4xl">
               Additional work
             </h2>
@@ -738,7 +970,7 @@ function Toolkit() {
   return (
     <section id="toolkit" className="border-b border-rule">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <div className="ref-code">SECTION / 05</div>
+        <div className="ref-code">SECTION / 06</div>
         <h2 className="mt-2 font-serif text-3xl text-ink sm:text-4xl">Toolkit</h2>
         <div className="mt-10 space-y-8">
           {TOOLKIT.map((t) => (
@@ -894,6 +1126,7 @@ function Index() {
       <Hero />
       <About />
       <Work />
+      <AISchool />
       <More />
       <Toolkit />
       <Contact />
