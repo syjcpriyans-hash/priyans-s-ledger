@@ -381,15 +381,6 @@ function CaseModal({
                     className="block h-auto w-full"
                     loading="lazy"
                   />
-                  <span className="mt-3 flex items-center justify-between gap-4 border-t border-rule pt-3 font-mono text-xs uppercase tracking-[0.1em] text-ledger">
-                    Click to enlarge
-                    <span
-                      aria-hidden
-                      className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    >
-                      ↗
-                    </span>
-                  </span>
                 </button>
                 <figcaption className="mt-3">
                   <div className="font-mono text-sm uppercase tracking-wide text-ink">
