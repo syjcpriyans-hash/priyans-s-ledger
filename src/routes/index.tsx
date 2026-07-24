@@ -8,13 +8,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "AI-powered products and structured research into Indian SME and D2C markets. See ListingsReady, the trading operations system, and the India market research.",
+          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone operations system, and the India market research.",
       },
       { property: "og:title", content: "Priyans — Builder, Researcher, Operator" },
       {
         property: "og:description",
         content:
-          "AI-powered products and structured research into Indian SME and D2C markets. See ListingsReady, the trading operations system, and the India market research.",
+          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone operations system, and the India market research.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -125,7 +125,7 @@ function About() {
 type Case = {
   code: string;
   category: string;
-  status: "LIVE" | "IN USE" | "ONGOING";
+  status: "LIVE" | "IN USE" | "ONGOING" | "CLIENT PROJECT";
   title: string;
   summary: string;
   problem: string;
@@ -137,8 +137,14 @@ type Case = {
     caption: string;
     image?: string;
     alt?: string;
+    file?: string;
+    fileName?: string;
   };
-  links?: { label: string; href: string }[];
+  links?: {
+    label: string;
+    href: string;
+    download?: boolean | string;
+  }[];
 };
 
 const CASES: Case[] = [
@@ -191,29 +197,63 @@ const CASES: Case[] = [
   },
   {
     code: "WORK/02",
-    category: "OPERATIONS",
-    status: "IN USE",
-    title: "Trading Operations System",
+    category: "CLIENT SYSTEM · EXCEL AUTOMATION",
+    status: "CLIENT PROJECT",
+    title: "Product Shopping Zone — Excel Operations System",
     summary:
-      "A connected system for purchases, sales, inventory, payments, and reporting.",
+      "A client-built Excel business management system connecting transactions, inventory, supplier and customer balances, accounting, financial statements, and management reporting across 11 worksheets.",
     problem:
-      "A real import/export business — China-sourced, thousands of SKUs — had no unified way to manage purchases, sales, inventory, GST compliance, and financials.",
+      "Product Shopping Zone approached me to design a practical Excel system for managing its day-to-day business information in one connected place. The requirement was broader than stock tracking: the system needed to record purchases and sales, distinguish cash and credit transactions, monitor supplier and customer balances, calculate inventory values, and produce financial and management reports without repeatedly entering the same information.",
     build: [
-      "Designed the Excel-based system architecture end to end.",
-      "Modeled purchase → inventory → sales → GST → financials as one connected sheet system.",
-      "Reformatted the Business Management System Manual into a usable reference document.",
+      "Gathered the client requirements and translated the operating process into an 11-sheet workbook architecture covering Transactions, SKU Master, Inventory, Ledger, Accounts Payable, Accounts Receivable, Profit & Loss, Balance Sheet, Item by Contact, Purchase Reports, and Sales Reports.",
+      "Designed a single-entry Transactions sheet supporting purchases, sales, expenses, income, payments received, and payments made, with automated cash-versus-credit account logic.",
+      "Built a SKU-driven inventory model that calculates total purchased, total sold, current stock, average purchase cost, latest purchase price, inventory value, and reorder status.",
+      "Created connected supplier and customer balance systems, an automated debit-and-credit ledger, a Profit & Loss statement, and a Balance Sheet with an accounting balance check.",
+      "Developed item-, contact-, and category-level purchase and sales reports, supported by six management charts for quicker business analysis.",
+      "Structured the workbook for up to 10,000 transaction rows using 156,000+ formulas, named ranges, data validation, conditional formatting, VLOOKUP, SUMIFS, SUMPRODUCT, INDEX/MATCH, LOOKUP, and error-handling logic.",
     ],
     outcome:
-      "The system the business runs its core operations on today. Currently in daily use across purchasing, sales, and compliance.",
+      "Delivered a working Excel-based operations prototype that centralizes the client's core records and converts transaction entries into inventory, receivable, payable, accounting, financial-statement, and reporting outputs. The project demonstrates my ability to gather business requirements, map operational processes, design a connected system, apply financial logic, and turn a client's request into a usable business tool.",
     meta: [
-      { label: "SCOPE", value: "Thousands of SKUs · daily ops" },
-      { label: "ROLE", value: "Systems architect" },
-      { label: "STATE", value: "In production use" },
+      {
+        label: "ROLE",
+        value:
+          "Business systems designer · Excel developer · Client requirements lead",
+      },
+      {
+        label: "SCALE",
+        value:
+          "11 connected sheets · 10,000 transaction rows · 156,000+ formulas · 6 charts",
+      },
+      {
+        label: "TOOLS",
+        value:
+          "Microsoft Excel · VLOOKUP · SUMIFS · SUMPRODUCT · INDEX/MATCH · Data validation · Conditional formatting",
+      },
+      {
+        label: "SKILLS",
+        value:
+          "Requirements gathering · Process mapping · Inventory modelling · Financial reporting · Systems thinking · Client communication",
+      },
     ],
     artifact: {
-      label: "Excel system — sheet map & dashboard",
-      caption: "Sanitized screenshot placeholder — replace with sheet overview.",
+      label: "Product Shopping Zone — Excel operations workbook",
+      caption:
+        "Downloadable client workbook containing 11 connected operational, accounting, and reporting sheets.",
+      file: "/product-shopping-zone-excel-system.xlsx",
+      fileName: "Product_Shopping_Zone_Excel_Operations_System.xlsx",
     },
+    links: [
+      {
+        label: "Download Excel workbook",
+        href: "/product-shopping-zone-excel-system.xlsx",
+        download: "Product_Shopping_Zone_Excel_Operations_System.xlsx",
+      },
+      {
+        label: "View Product Shopping Zone",
+        href: "https://www.instagram.com/productshoppingzone/?hl=en",
+      },
+    ],
   },
   {
     code: "WORK/03",
@@ -353,11 +393,12 @@ function CaseModal({
                       <a
                         key={link.label}
                         href={link.href}
-                        target="_blank"
-                        rel="noreferrer"
+                        target={link.download ? undefined : "_blank"}
+                        rel={link.download ? undefined : "noreferrer"}
+                        download={link.download}
                         className="ledger-link font-mono text-xs uppercase tracking-[0.14em]"
                       >
-                        {link.label} ↗
+                        {link.label} {link.download ? "↓" : "↗"}
                       </a>
                     ))}
                   </div>
@@ -391,6 +432,36 @@ function CaseModal({
                   </div>
                 </figcaption>
               </figure>
+            ) : project.artifact.file ? (
+              <a
+                href={project.artifact.file}
+                download={project.artifact.fileName ?? true}
+                className="artifact-frame group block aspect-[4/3] w-full transition-shadow hover:shadow-[0_0_0_1px_var(--color-ink)]"
+                aria-label={`Download ${project.artifact.label}`}
+              >
+                <div className="flex h-full flex-col justify-between p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="ref-code">{project.category}</span>
+                    <span
+                      aria-hidden
+                      className="font-mono text-xl text-ink transition-transform group-hover:translate-y-0.5"
+                    >
+                      ↓
+                    </span>
+                  </div>
+                  <div>
+                    <div className="font-mono text-sm uppercase tracking-wide text-ink">
+                      {project.artifact.label}
+                    </div>
+                    <div className="mt-2 font-mono text-xs leading-relaxed text-khaki">
+                      {project.artifact.caption}
+                    </div>
+                    <div className="mt-4 border-t border-rule pt-3 font-mono text-xs uppercase tracking-[0.1em] text-ledger">
+                      Download workbook
+                    </div>
+                  </div>
+                </div>
+              </a>
             ) : (
               <div className="artifact-frame aspect-[4/3] w-full">
                 <div className="flex h-full flex-col justify-between p-5">
