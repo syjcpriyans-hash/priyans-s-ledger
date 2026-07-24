@@ -714,7 +714,7 @@ const AI_REELS: AIReel[] = [
     outcome:
       "See how an AI website builder can turn a business concept into a functional web presence.",
     tools: "Lovable",
-    image: "/ai-school/business-website.jpg",
+    image: "/ai-school/business-website.png",
     href: "https://www.instagram.com/aischoolforbusiness/?hl=en",
   },
 ];
