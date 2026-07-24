@@ -845,19 +845,7 @@ function AISchool() {
           ))}
         </div>
 
-        <div className="mt-7 grid grid-cols-1 gap-5 border-t border-rule pt-6 md:grid-cols-[1fr_auto] md:items-end">
-          <div>
-            <div className="ref-code">ROLE</div>
-            <p className="mt-2 font-mono text-xs leading-relaxed text-ink">
-              Founder · AI content strategist · Business educator
-            </p>
-            <div className="ref-code mt-5">SKILLS</div>
-            <p className="mt-2 font-mono text-xs leading-relaxed text-ink">
-              AI research · Business education · Content strategy · Workflow
-              design · Short-form communication · Audience building
-            </p>
-          </div>
-
+        <div className="mt-7 flex justify-center border-t border-rule pt-7">
           <a
             href="https://www.instagram.com/aischoolforbusiness/?hl=en"
             target="_blank"
