@@ -862,28 +862,318 @@ function AISchool() {
 
 /* -------------------------------------------------------------------------- */
 
-const MORE = [
+type MoreVideo = {
+  title: string;
+  description: string;
+  src: string;
+  poster: string;
+};
+
+type MoreItem = {
+  code: string;
+  tag: string;
+  title: string;
+  body: string;
+  detail?: {
+    overview: string;
+    objective: string;
+    tools: string[];
+    process: { title: string; body: string }[];
+    company: string;
+    companySummary: string;
+    companyPoints: string[];
+    outcome: string;
+    videos: MoreVideo[];
+  };
+};
+
+const MORE: MoreItem[] = [
   {
     code: "MORE/01",
-    tag: "CONTENT & GROWTH",
-    title: "Reels for Indian business owners",
-    body: "Instagram Reels in Hinglish on AI tools for SMEs. Research trending terms and viral formats; one Reel pairing a Lovart promotion with a Claude / ChatGPT prompt workflow went viral.",
+    tag: "AI CONTENT · PRODUCT MARKETING",
+    title: "AI Generated Video Content",
+    body:
+      "Converted static Delmen product photographs into short animated clips with Kling AI, then edited and combined them in CapCut for Instagram marketing.",
+    detail: {
+      overview:
+        "Delmen had professional product photographs but needed more engaging short-form content for social-media promotion. I created an image-to-video workflow that transformed existing pharmacy and medical-equipment photographs into motion-based marketing assets without requiring a traditional product-video shoot.",
+      objective:
+        "Create engaging product videos from existing photography while preserving the product's professional appearance and preparing the final content for Instagram.",
+      tools: ["Kling AI", "CapCut", "Instagram"],
+      process: [
+        {
+          title: "Concept and asset selection",
+          body:
+            "Selected product photographs that could support believable movement and planned short sequences around a clear product focus.",
+        },
+        {
+          title: "AI image-to-video generation",
+          body:
+            "Used Kling AI to animate the static product photographs into short clips, reviewed the outputs, and retained the versions with the most suitable product motion.",
+        },
+        {
+          title: "Editing and publishing",
+          body:
+            "Combined the generated clips in CapCut, refined their sequence and timing, added transitions and platform formatting, and prepared the completed videos for Instagram.",
+        },
+      ],
+      company: "Delmen Pharmacy and Medical Equipment",
+      companySummary:
+        "A workplace content project created to support the social-media marketing of pharmacy and medical equipment.",
+      companyPoints: [
+        "Turned existing static product photographs into reusable motion-based content.",
+        "Created product-focused short videos without arranging an additional physical video shoot.",
+        "Combined AI generation with manual editing to produce finished, platform-ready marketing assets.",
+      ],
+      outcome:
+        "Produced three short-form product videos featuring a Delmen examination bed and pharmacy refrigerators. The project demonstrates AI image-to-video generation, video editing, product marketing, visual sequencing, and the practical use of generative AI within a real business workflow.",
+      videos: [
+        {
+          title: "Delmen Examination Bed",
+          description:
+            "AI-animated examination-bed product content edited into a finished promotional video.",
+          src: "/delmen-videos/delmen-bed-video.mp4",
+          poster: "/delmen-videos/delmen-bed-video-poster.jpg",
+        },
+        {
+          title: "Pharmacy Refrigerator — Landscape",
+          description:
+            "A landscape-format refrigerator video assembled from AI-generated product motion.",
+          src: "/delmen-videos/delmen-refrigerator-landscape.mp4",
+          poster:
+            "/delmen-videos/delmen-refrigerator-landscape-poster.jpg",
+        },
+        {
+          title: "Pharmacy Refrigerator — Vertical",
+          description:
+            "A vertical short-form refrigerator video prepared for mobile social-media viewing.",
+          src: "/delmen-videos/delmen-refrigerator-vertical.mp4",
+          poster:
+            "/delmen-videos/delmen-refrigerator-vertical-poster.jpg",
+        },
+      ],
+    },
   },
   {
     code: "MORE/02",
     tag: "CLIENT WORK",
     title: "Social systemization",
-    body: "For a client, structured a repeatable Claude prompt routine that produces branded 4:5 Instagram / LinkedIn / Facebook posts in Canva / Figma — cutting design cycle time to minutes.",
+    body:
+      "For a client, structured a repeatable Claude prompt routine that produces branded 4:5 Instagram / LinkedIn / Facebook posts in Canva / Figma — cutting design cycle time to minutes.",
   },
   {
     code: "MORE/03",
     tag: "BRAND & PACKAGING",
     title: "Organik Doze + premium juice concept",
-    body: "AI-generated packaging concept for Organik Doze supplements, plus a full packaging identity concept for a premium health juice brand.",
+    body:
+      "AI-generated packaging concept for Organik Doze supplements, plus a full packaging identity concept for a premium health juice brand.",
   },
 ];
 
+function MoreDetail({
+  item,
+  onClose,
+}: {
+  item: MoreItem;
+  onClose: () => void;
+}) {
+  if (!item.detail) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-paper">
+      <article
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="more-detail-title"
+        className="min-h-dvh w-full bg-paper"
+      >
+        <div className="sticky top-0 z-10 border-b border-rule bg-paper/95 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-4 py-5 sm:flex-row sm:gap-6 sm:px-6 sm:py-7">
+            <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="ref-code text-ink">{item.tag}</span>
+                <span className="status-stamp">WORKPLACE PROJECT</span>
+              </div>
+              <h3
+                id="more-detail-title"
+                className="mt-5 font-serif text-3xl leading-tight text-ink sm:text-5xl"
+              >
+                {item.title}
+              </h3>
+              <p className="mt-4 max-w-3xl font-serif text-lg leading-relaxed text-ink/85 sm:text-xl">
+                {item.body}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="min-h-11 shrink-0 self-end border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper sm:self-auto"
+              aria-label="Close additional work details"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:gap-12">
+            <div className="space-y-10">
+              <section className="border-t border-rule pt-5">
+                <h4 className="ref-code">Overview</h4>
+                <p className="mt-4 font-serif text-xl leading-relaxed text-ink">
+                  {item.detail.overview}
+                </p>
+              </section>
+
+              <section className="border-t border-rule pt-5">
+                <h4 className="ref-code">Production workflow</h4>
+                <div className="mt-5 space-y-4">
+                  {item.detail.process.map((step, index) => (
+                    <div
+                      key={step.title}
+                      className="grid grid-cols-[36px_1fr] gap-4 border border-rule p-5"
+                    >
+                      <span className="ref-code pt-1">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h5 className="font-serif text-xl text-ink">
+                          {step.title}
+                        </h5>
+                        <p className="mt-2 text-sm leading-relaxed text-ink/80">
+                          {step.body}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="border-t border-rule pt-5">
+                <h4 className="ref-code">Outcome</h4>
+                <p className="mt-4 font-serif text-xl leading-relaxed text-ink">
+                  {item.detail.outcome}
+                </p>
+              </section>
+            </div>
+
+            <aside className="space-y-7">
+              <section className="border-t border-rule pt-5">
+                <h4 className="ref-code">Objective</h4>
+                <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                  {item.detail.objective}
+                </p>
+              </section>
+
+              <section className="border-t border-rule pt-5">
+                <h4 className="ref-code">Tools</h4>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {item.detail.tools.map((tool) => (
+                    <li
+                      key={tool}
+                      className="border border-ink/25 px-3 py-1.5 font-mono text-xs uppercase tracking-[0.08em] text-ink"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="border-t border-rule pt-5">
+                <h4 className="font-serif text-2xl text-ink">
+                  {item.detail.company}
+                </h4>
+                <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                  {item.detail.companySummary}
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {item.detail.companyPoints.map((point) => (
+                    <li
+                      key={point}
+                      className="grid grid-cols-[12px_1fr] gap-3 text-sm leading-relaxed text-ink/80"
+                    >
+                      <span aria-hidden className="pt-1 text-ledger">
+                        •
+                      </span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </aside>
+          </div>
+
+          <section className="mt-12 border-t border-rule pt-7 sm:mt-16">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <div className="ref-code">Project proof</div>
+                <h4 className="mt-2 font-serif text-3xl text-ink">
+                  Finished Delmen product videos
+                </h4>
+              </div>
+              <p className="max-w-xl text-sm leading-relaxed text-ink/70">
+                Select play to view the actual Kling AI and CapCut videos used
+                for Delmen's product marketing.
+              </p>
+            </div>
+
+            <div className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
+              {item.detail.videos.map((video) => (
+                <figure
+                  key={video.src}
+                  className="border border-rule bg-paper p-3"
+                >
+                  <div className="flex aspect-video items-center justify-center overflow-hidden bg-ink">
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster={video.poster}
+                      className="h-full w-full object-contain"
+                    >
+                      <source src={video.src} type="video/mp4" />
+                      Your browser does not support embedded MP4 video.
+                    </video>
+                  </div>
+                  <figcaption className="p-3 pb-1">
+                    <div className="font-serif text-xl text-ink">
+                      {video.title}
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-ink/70">
+                      {video.description}
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  );
+}
+
 function More() {
+  const [selectedItem, setSelectedItem] = useState<MoreItem | null>(null);
+
+  useEffect(() => {
+    if (!selectedItem) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeWithEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedItem(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeWithEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeWithEscape);
+    };
+  }, [selectedItem]);
+
   return (
     <section id="more" className="border-b border-rule bg-paper">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
@@ -896,21 +1186,55 @@ function More() {
           </div>
           <span className="ref-code hidden sm:inline">03 ENTRIES</span>
         </div>
+
         <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-rule bg-rule md:grid-cols-3">
-          {MORE.map((m) => (
-            <div key={m.code} className="flex flex-col bg-paper p-6">
-              <div className="flex items-center justify-between">
-                <span className="ref-code">{m.code}</span>
-                <span className="ref-code text-ledger">{m.tag}</span>
+          {MORE.map((item) =>
+            item.detail ? (
+              <button
+                key={item.code}
+                type="button"
+                onClick={() => setSelectedItem(item)}
+                className="group flex min-h-full flex-col bg-paper p-6 text-left transition-colors hover:bg-ink/[0.025]"
+                aria-label={`View ${item.title} project details`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="ref-code">{item.code}</span>
+                  <span className="ref-code text-ledger">{item.tag}</span>
+                </div>
+                <h3 className="mt-4 font-serif text-xl leading-snug text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                  {item.body}
+                </p>
+                <span className="mt-auto pt-6 font-mono text-xs uppercase tracking-[0.12em] text-ledger">
+                  View project ↗
+                </span>
+              </button>
+            ) : (
+              <div key={item.code} className="flex flex-col bg-paper p-6">
+                <div className="flex items-center justify-between">
+                  <span className="ref-code">{item.code}</span>
+                  <span className="ref-code text-ledger">{item.tag}</span>
+                </div>
+                <h3 className="mt-4 font-serif text-xl leading-snug text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                  {item.body}
+                </p>
               </div>
-              <h3 className="mt-4 font-serif text-xl leading-snug text-ink">
-                {m.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink/80">{m.body}</p>
-            </div>
-          ))}
+            ),
+          )}
         </div>
       </div>
+
+      {selectedItem && (
+        <MoreDetail
+          item={selectedItem}
+          onClose={() => setSelectedItem(null)}
+        />
+      )}
     </section>
   );
 }
