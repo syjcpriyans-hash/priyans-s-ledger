@@ -250,6 +250,26 @@ function CaseModal({
   project: Case;
   onClose: () => void;
 }) {
+  const [isImageExpanded, setIsImageExpanded] = useState(false);
+
+  useEffect(() => {
+    if (!isImageExpanded) return;
+
+    const closeExpandedImage = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        setIsImageExpanded(false);
+      }
+    };
+
+    window.addEventListener("keydown", closeExpandedImage, true);
+
+    return () => {
+      window.removeEventListener("keydown", closeExpandedImage, true);
+    };
+  }, [isImageExpanded]);
+
   return (
     <div
       className="fixed inset-0 z-50 overflow-y-auto bg-paper"
@@ -289,7 +309,13 @@ function CaseModal({
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 sm:gap-10 sm:px-6 sm:py-12 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div
+          className={`mx-auto grid grid-cols-1 gap-8 px-4 py-8 sm:gap-10 sm:px-6 sm:py-12 ${
+            project.artifact.image
+              ? "max-w-7xl lg:grid-cols-[minmax(0,0.8fr)_minmax(520px,1.2fr)]"
+              : "max-w-6xl lg:grid-cols-[minmax(0,1fr)_360px]"
+          }`}
+        >
           <div className="space-y-10">
             <section className="grid grid-cols-1 gap-3 border-t border-rule pt-5 sm:grid-cols-[110px_1fr]">
               <h4 className="ref-code pt-1">Problem</h4>
@@ -343,12 +369,11 @@ function CaseModal({
           <aside>
             {project.artifact.image ? (
               <figure>
-                <a
-                  href={project.artifact.image}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block border border-ink bg-paper p-2 transition-opacity hover:opacity-90"
-                  aria-label={`View full-size image: ${project.artifact.label}`}
+                <button
+                  type="button"
+                  onClick={() => setIsImageExpanded(true)}
+                  className="group block w-full border border-ink bg-paper p-2 text-left transition-shadow hover:shadow-[0_0_0_1px_var(--color-ink)] sm:p-3"
+                  aria-label={`Enlarge image: ${project.artifact.label}`}
                 >
                   <img
                     src={project.artifact.image}
@@ -356,7 +381,16 @@ function CaseModal({
                     className="block h-auto w-full"
                     loading="lazy"
                   />
-                </a>
+                  <span className="mt-3 flex items-center justify-between gap-4 border-t border-rule pt-3 font-mono text-xs uppercase tracking-[0.1em] text-ledger">
+                    Click to enlarge
+                    <span
+                      aria-hidden
+                      className="text-base transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    >
+                      ↗
+                    </span>
+                  </span>
+                </button>
                 <figcaption className="mt-3">
                   <div className="font-mono text-sm uppercase tracking-wide text-ink">
                     {project.artifact.label}
@@ -364,14 +398,6 @@ function CaseModal({
                   <div className="mt-1 font-mono text-xs leading-relaxed text-khaki">
                     {project.artifact.caption}
                   </div>
-                  <a
-                    href={project.artifact.image}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="ledger-link mt-2 inline-block font-mono text-xs uppercase tracking-[0.1em]"
-                  >
-                    View full screenshot ↗
-                  </a>
                 </figcaption>
               </figure>
             ) : (
@@ -402,6 +428,39 @@ function CaseModal({
             </dl>
           </aside>
         </div>
+
+        {isImageExpanded && project.artifact.image && (
+          <div
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/90 p-3 sm:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Expanded image: ${project.artifact.label}`}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
+                setIsImageExpanded(false);
+              }
+            }}
+          >
+            <div className="relative flex max-h-full w-full max-w-[96rem] flex-col">
+              <button
+                type="button"
+                onClick={() => setIsImageExpanded(false)}
+                className="mb-3 min-h-11 self-end border border-paper bg-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-paper transition-colors hover:bg-paper hover:text-ink"
+                aria-label="Close enlarged screenshot"
+              >
+                Close
+              </button>
+
+              <div className="min-h-0 flex-1 overflow-auto bg-paper p-2 sm:p-3">
+                <img
+                  src={project.artifact.image}
+                  alt={project.artifact.alt ?? project.artifact.label}
+                  className="mx-auto block h-auto max-h-[calc(100dvh-7rem)] max-w-none object-contain sm:max-w-full"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </article>
     </div>
   );
