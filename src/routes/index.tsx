@@ -1338,7 +1338,7 @@ function Contact() {
               </div>
             </div>
 
-            <p className="mt-5 max-w-sm text-base leading-relaxed text-ink/75">
+            <p className="mt-5 max-w-sm font-serif text-base leading-relaxed text-ink/75">
               Commerce student applying AI, marketing, and systems thinking to
               solve modern business challenges.
             </p>
@@ -1363,7 +1363,7 @@ function Contact() {
                   <li key={href}>
                     <a
                       href={href}
-                      className="text-base text-ink/75 transition-colors hover:text-stamp"
+                      className="font-serif text-base text-ink/75 transition-colors hover:text-stamp"
                     >
                       {label}
                     </a>
@@ -1380,7 +1380,7 @@ function Contact() {
                 <div className="ref-code">Email</div>
                 <a
                   href="mailto:priyans.kevadia@torontomu.ca"
-                  className="mt-1 block break-all text-base text-ink/75 underline decoration-ink/25 underline-offset-4 transition-colors hover:text-stamp hover:decoration-stamp"
+                  className="mt-1 block break-all font-serif text-base text-ink/75 underline decoration-ink/25 underline-offset-4 transition-colors hover:text-stamp hover:decoration-stamp"
                 >
                   priyans.kevadia@torontomu.ca
                 </a>
@@ -1390,7 +1390,7 @@ function Contact() {
                 <div className="ref-code">Phone</div>
                 <a
                   href="tel:+14378585011"
-                  className="mt-1 block text-base text-ink/75 underline decoration-ink/25 underline-offset-4 transition-colors hover:text-stamp hover:decoration-stamp"
+                  className="mt-1 block font-serif text-base text-ink/75 underline decoration-ink/25 underline-offset-4 transition-colors hover:text-stamp hover:decoration-stamp"
                 >
                   +1 437-858-5011
                 </a>
@@ -1398,7 +1398,7 @@ function Contact() {
 
               <div>
                 <div className="ref-code">Location</div>
-                <p className="mt-1 text-base text-ink/75">
+                <p className="mt-1 font-serif text-base text-ink/75">
                   Mississauga, ON, Canada
                 </p>
               </div>
@@ -1407,7 +1407,7 @@ function Contact() {
 
           <div>
             <h3 className="ref-code text-ink">Let&apos;s work together</h3>
-            <p className="mt-5 text-base leading-relaxed text-ink/75">
+            <p className="mt-5 font-serif text-base leading-relaxed text-ink/75">
               Interested in AI automation, marketing, or business projects?
               Let&apos;s connect.
             </p>
