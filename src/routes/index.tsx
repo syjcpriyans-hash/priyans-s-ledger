@@ -895,6 +895,11 @@ type MoreItem = {
       href: string;
       label: string;
     };
+    scenarios?: {
+      title: string;
+      description: string;
+      href: string;
+    }[];
   };
 };
 
@@ -972,18 +977,19 @@ const MORE: MoreItem[] = [
     tag: "WORKFLOW AUTOMATION · MAKE.COM",
     title: "Automation Systems for Delmen and Advance Security",
     body:
-      "Built a reusable Make.com workflow to automate Google Business Profile posting for Delmen Pharmacy and Medical Equipment and Advance Security.",
+      "Built multiple Make.com automations for Delmen Pharmacy and Medical Equipment and Advance Security across business posting and customer-response workflows.",
     detail: {
       status: "AUTOMATION SYSTEM",
       processHeading: "Automation workflow",
       overview:
-        "Delmen Pharmacy and Medical Equipment and Advance Security both needed a more consistent way to manage Google Business Profile content. Repeating the same preparation and publishing steps manually created avoidable operational work, so I designed a reusable Make.com scenario that turns the posting process into a structured automation.",
+        "Delmen Pharmacy and Medical Equipment and Advance Security had several recurring digital tasks that required the same information to be prepared, checked, and published repeatedly. I designed a group of Make.com scenarios to standardize those processes across Google Business Profile posting, social-media publishing, and customer-review responses while keeping each company's content and brand requirements separate.",
       objective:
-        "Reduce repetitive Google Business Profile work and create a reusable automation framework that can support two businesses with different brands and content requirements.",
+        "Reduce repetitive posting and response work by creating reliable, reusable no-code workflows that support two businesses with different brands, audiences, and content requirements.",
       tools: [
         "Make.com",
         "Google Business Profile",
-        "Workflow automation",
+        "Social media workflows",
+        "No-code automation",
       ],
       process: [
         {
@@ -1017,15 +1023,30 @@ const MORE: MoreItem[] = [
         "Created a shareable Make.com scenario that demonstrates the workflow structure.",
       ],
       outcome:
-        "Built and applied a reusable business automation that replaces repetitive posting steps with a structured Make.com workflow. The project demonstrates process analysis, no-code automation, scenario design, multi-business adaptation, testing, and the practical implementation of automation inside real operating environments.",
-      proof: {
-        title: "Public Make.com scenario",
-        description:
-          "Open the shared scenario page to inspect the automation canvas and workflow structure.",
-        href:
-          "https://us2.make.com/public/shared-scenario/EkMNbDTn4WG/gbp-auto-post",
-        label: "View Make scenario",
-      },
+        "Built three shareable Make.com scenarios covering business-profile posting, social-media publishing, and Google review responses. The project demonstrates process analysis, no-code scenario design, multi-business adaptation, workflow testing, and the practical implementation of automation inside real operating environments.",
+      scenarios: [
+        {
+          title: "Google Business Profile Auto Post",
+          description:
+            "Automates the recurring Google Business Profile publishing workflow so prepared business updates can move through a consistent posting process with fewer manual steps.",
+          href:
+            "https://us2.make.com/public/shared-scenario/EkMNbDTn4WG/gbp-auto-post",
+        },
+        {
+          title: "Social Media Auto Post",
+          description:
+            "Creates a repeatable social-media publishing workflow for prepared business content, reducing the need to manually rebuild the posting process each time.",
+          href:
+            "https://us2.make.com/public/shared-scenario/ftx5G6EFZp8/social-auto-post",
+        },
+        {
+          title: "Google Business Profile Review Auto Reply — Delmen",
+          description:
+            "Automates Delmen's Google Business Profile review-response workflow to support faster, more consistent customer communication and reputation management.",
+          href:
+            "https://us2.make.com/public/shared-scenario/1vVKPZ40MHl/gbp-review-auto-reply-delmen",
+        },
+      ],
     },
   },
   {
@@ -1245,6 +1266,52 @@ function MoreDetail({
                 >
                   {item.detail.proof.label} ↗
                 </a>
+              </div>
+            </section>
+          )}
+
+          {item.detail.scenarios && item.detail.scenarios.length > 0 && (
+            <section className="mt-12 border-t border-rule pt-7 sm:mt-16">
+              <div>
+                <div className="ref-code">Automation scenarios</div>
+                <h4 className="mt-2 font-serif text-3xl text-ink sm:text-4xl">
+                  Make.com workflows
+                </h4>
+                <p className="mt-4 max-w-3xl font-serif text-lg leading-relaxed text-ink/80">
+                  Each automation addresses a separate recurring business
+                  process while using a consistent no-code workflow approach.
+                </p>
+              </div>
+
+              <div className="mt-7 space-y-4">
+                {item.detail.scenarios.map((scenario, index) => (
+                  <article
+                    key={scenario.href}
+                    className="grid grid-cols-1 gap-6 border border-rule p-5 sm:p-6 lg:grid-cols-[48px_minmax(0,1fr)_auto] lg:items-center"
+                  >
+                    <span className="ref-code pt-1">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <div>
+                      <h5 className="font-serif text-2xl leading-tight text-ink">
+                        {scenario.title}
+                      </h5>
+                      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink/75">
+                        {scenario.description}
+                      </p>
+                    </div>
+
+                    <a
+                      href={scenario.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex min-h-11 shrink-0 items-center justify-center border border-ink px-5 py-3 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
+                    >
+                      View Make scenario ↗
+                    </a>
+                  </article>
+                ))}
               </div>
             </section>
           )}
