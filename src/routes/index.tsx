@@ -658,8 +658,7 @@ function Work() {
             className="group flex min-h-[300px] min-w-0 flex-col bg-paper p-5 text-left outline-none transition-shadow hover:shadow-[inset_0_0_0_1px_var(--color-ink)] focus-visible:relative focus-visible:z-10 sm:min-h-[350px] sm:p-7"
             aria-label={`Open case study for ${project.title}`}
           >
-            <div className="flex items-start justify-between gap-4">
-              <span className="ref-code text-ink">{project.category}</span>
+            <div className="flex justify-end">
               <span
                 aria-hidden
                 className="flex size-10 items-center justify-center border border-ink text-ink transition-colors group-hover:bg-ink group-hover:text-paper"
@@ -832,8 +831,7 @@ function AISchool() {
       <div className="mx-auto max-w-6xl px-4 pt-16 sm:px-6 sm:pt-20">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div className="ref-code">SECTION / 04</div>
-            <h2 className="mt-2 max-w-3xl font-serif text-3xl leading-tight text-ink sm:text-4xl">
+            <h2 className="max-w-3xl font-serif text-3xl leading-tight text-ink sm:text-4xl">
               Turning AI Tools into Business Workflows
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink/75 sm:text-lg">
