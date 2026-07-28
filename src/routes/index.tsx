@@ -347,31 +347,34 @@ function CaseModal({
         className="min-h-dvh w-full bg-paper"
       >
         <div className="sticky top-0 z-10 border-b border-rule bg-paper/95 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-4 py-5 sm:flex-row sm:gap-6 sm:px-6 sm:py-7">
-          <div>
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-5 px-4 py-4 sm:px-6 sm:py-5">
+            <h3
+              id="case-modal-title"
+              className="min-w-0 font-serif text-2xl leading-tight text-ink sm:text-3xl"
+            >
+              {project.title}
+            </h3>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="min-h-11 shrink-0 border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
+              aria-label="Close project details"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+
+        <div className="border-b border-rule">
+          <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 sm:py-9">
             <div className="flex flex-wrap items-center gap-3">
               <span className="ref-code text-ink">{project.category}</span>
               <span className="status-stamp">{project.status}</span>
             </div>
-            <h3
-              id="case-modal-title"
-              className="mt-5 font-serif text-3xl leading-tight text-ink sm:text-5xl"
-            >
-              {project.title}
-            </h3>
-            <p className="mt-4 max-w-2xl font-serif text-lg leading-relaxed text-ink/85 sm:text-xl">
+            <p className="mt-4 max-w-3xl font-serif text-lg leading-relaxed text-ink/85 sm:text-xl">
               {project.summary}
             </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="min-h-11 shrink-0 self-end border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper sm:self-auto"
-            aria-label="Close project details"
-          >
-            Close
-          </button>
           </div>
         </div>
 
@@ -1052,33 +1055,36 @@ function MoreDetail({
         className="min-h-dvh w-full bg-paper"
       >
         <div className="sticky top-0 z-10 border-b border-rule bg-paper/95 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-4 py-5 sm:flex-row sm:gap-6 sm:px-6 sm:py-7">
-            <div>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="ref-code text-ink">{item.tag}</span>
-                <span className="status-stamp">
-                  {item.detail.status ?? "WORKPLACE PROJECT"}
-                </span>
-              </div>
-              <h3
-                id="more-detail-title"
-                className="mt-5 font-serif text-3xl leading-tight text-ink sm:text-5xl"
-              >
-                {item.title}
-              </h3>
-              <p className="mt-4 max-w-3xl font-serif text-lg leading-relaxed text-ink/85 sm:text-xl">
-                {item.body}
-              </p>
-            </div>
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-5 px-4 py-4 sm:px-6 sm:py-5">
+            <h3
+              id="more-detail-title"
+              className="min-w-0 font-serif text-2xl leading-tight text-ink sm:text-3xl"
+            >
+              {item.title}
+            </h3>
 
             <button
               type="button"
               onClick={onClose}
-              className="min-h-11 shrink-0 self-end border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper sm:self-auto"
+              className="min-h-11 shrink-0 border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
               aria-label="Close additional work details"
             >
               Close
             </button>
+          </div>
+        </div>
+
+        <div className="border-b border-rule">
+          <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 sm:py-9">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="ref-code text-ink">{item.tag}</span>
+              <span className="status-stamp">
+                {item.detail.status ?? "WORKPLACE PROJECT"}
+              </span>
+            </div>
+            <p className="mt-4 max-w-3xl font-serif text-lg leading-relaxed text-ink/85 sm:text-xl">
+              {item.body}
+            </p>
           </div>
         </div>
 
