@@ -875,15 +875,23 @@ type MoreItem = {
   title: string;
   body: string;
   detail?: {
+    status?: string;
     overview: string;
     objective: string;
     tools: string[];
+    processHeading?: string;
     process: { title: string; body: string }[];
     company: string;
     companySummary: string;
     companyPoints: string[];
     outcome: string;
-    videos: MoreVideo[];
+    videos?: MoreVideo[];
+    proof?: {
+      title: string;
+      description: string;
+      href: string;
+      label: string;
+    };
   };
 };
 
@@ -895,6 +903,8 @@ const MORE: MoreItem[] = [
     body:
       "Converted static Delmen product photographs into short animated clips with Kling AI, then edited and combined them in CapCut for Instagram marketing.",
     detail: {
+      status: "WORKPLACE PROJECT",
+      processHeading: "Production workflow",
       overview:
         "Delmen had professional product photographs but needed more engaging short-form content for social-media promotion. I created an image-to-video workflow that transformed existing pharmacy and medical-equipment photographs into motion-based marketing assets without requiring a traditional product-video shoot.",
       objective:
@@ -956,10 +966,64 @@ const MORE: MoreItem[] = [
   },
   {
     code: "MORE/02",
-    tag: "CLIENT WORK",
-    title: "Social systemization",
+    tag: "WORKFLOW AUTOMATION · MAKE.COM",
+    title: "Automation Systems for Delmen and Advance Security",
     body:
-      "For a client, structured a repeatable Claude prompt routine that produces branded 4:5 Instagram / LinkedIn / Facebook posts in Canva / Figma — cutting design cycle time to minutes.",
+      "Built a reusable Make.com workflow to automate Google Business Profile posting for Delmen Pharmacy and Medical Equipment and Advance Security.",
+    detail: {
+      status: "AUTOMATION SYSTEM",
+      processHeading: "Automation workflow",
+      overview:
+        "Delmen Pharmacy and Medical Equipment and Advance Security both needed a more consistent way to manage Google Business Profile content. Repeating the same preparation and publishing steps manually created avoidable operational work, so I designed a reusable Make.com scenario that turns the posting process into a structured automation.",
+      objective:
+        "Reduce repetitive Google Business Profile work and create a reusable automation framework that can support two businesses with different brands and content requirements.",
+      tools: [
+        "Make.com",
+        "Google Business Profile",
+        "Workflow automation",
+      ],
+      process: [
+        {
+          title: "Process mapping",
+          body:
+            "Identified the recurring steps involved in preparing and publishing Google Business Profile posts and separated reusable workflow logic from company-specific content.",
+        },
+        {
+          title: "Scenario design",
+          body:
+            "Configured the Make.com scenario to move post information through a repeatable automated workflow instead of rebuilding the publishing process for every post.",
+        },
+        {
+          title: "Multi-business adaptation",
+          body:
+            "Applied the same automation framework to Delmen and Advance Security while keeping each company's content, positioning, and business identity separate.",
+        },
+        {
+          title: "Testing and refinement",
+          body:
+            "Tested scenario runs, reviewed the resulting workflow behaviour, and refined the mappings so the automation could be used more reliably in day-to-day business operations.",
+        },
+      ],
+      company:
+        "Delmen Pharmacy and Medical Equipment + Advance Security",
+      companySummary:
+        "A practical automation project created for two operating businesses with different customers, services, and content needs.",
+      companyPoints: [
+        "Designed one reusable automation concept that could support two separate businesses.",
+        "Reduced repeated manual work involved in Google Business Profile publishing.",
+        "Created a shareable Make.com scenario that demonstrates the workflow structure.",
+      ],
+      outcome:
+        "Built and applied a reusable business automation that replaces repetitive posting steps with a structured Make.com workflow. The project demonstrates process analysis, no-code automation, scenario design, multi-business adaptation, testing, and the practical implementation of automation inside real operating environments.",
+      proof: {
+        title: "Public Make.com scenario",
+        description:
+          "Open the shared scenario page to inspect the automation canvas and workflow structure.",
+        href:
+          "https://us2.make.com/public/shared-scenario/EkMNbDTn4WG/gbp-auto-post",
+        label: "View Make scenario",
+      },
+    },
   },
   {
     code: "MORE/03",
@@ -992,7 +1056,9 @@ function MoreDetail({
             <div>
               <div className="flex flex-wrap items-center gap-3">
                 <span className="ref-code text-ink">{item.tag}</span>
-                <span className="status-stamp">WORKPLACE PROJECT</span>
+                <span className="status-stamp">
+                  {item.detail.status ?? "WORKPLACE PROJECT"}
+                </span>
               </div>
               <h3
                 id="more-detail-title"
@@ -1027,7 +1093,9 @@ function MoreDetail({
               </section>
 
               <section className="border-t border-rule pt-5">
-                <h4 className="ref-code">Production workflow</h4>
+                <h4 className="ref-code">
+                  {item.detail.processHeading ?? "Project workflow"}
+                </h4>
                 <div className="mt-5 space-y-4">
                   {item.detail.process.map((step, index) => (
                     <div
@@ -1104,50 +1172,76 @@ function MoreDetail({
             </aside>
           </div>
 
-          <section className="mt-12 border-t border-rule pt-7 sm:mt-16">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <div className="ref-code">Project proof</div>
-                <h4 className="mt-2 font-serif text-3xl text-ink">
-                  Finished Delmen product videos
-                </h4>
+          {item.detail.videos && item.detail.videos.length > 0 && (
+            <section className="mt-12 border-t border-rule pt-7 sm:mt-16">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <div className="ref-code">Project proof</div>
+                  <h4 className="mt-2 font-serif text-3xl text-ink">
+                    Finished Delmen product videos
+                  </h4>
+                </div>
+                <p className="max-w-xl text-sm leading-relaxed text-ink/70">
+                  Select play to view the actual Kling AI and CapCut videos
+                  used for Delmen's product marketing.
+                </p>
               </div>
-              <p className="max-w-xl text-sm leading-relaxed text-ink/70">
-                Select play to view the actual Kling AI and CapCut videos used
-                for Delmen's product marketing.
-              </p>
-            </div>
 
-            <div className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
-              {item.detail.videos.map((video) => (
-                <figure
-                  key={video.src}
-                  className="border border-rule bg-paper p-3"
-                >
-                  <div className="flex aspect-video items-center justify-center overflow-hidden bg-ink">
-                    <video
-                      controls
-                      playsInline
-                      preload="metadata"
-                      poster={video.poster}
-                      className="h-full w-full object-contain"
-                    >
-                      <source src={video.src} type="video/mp4" />
-                      Your browser does not support embedded MP4 video.
-                    </video>
-                  </div>
-                  <figcaption className="p-3 pb-1">
-                    <div className="font-serif text-xl text-ink">
-                      {video.title}
+              <div className="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                {item.detail.videos.map((video) => (
+                  <figure
+                    key={video.src}
+                    className="border border-rule bg-paper p-3"
+                  >
+                    <div className="flex aspect-video items-center justify-center overflow-hidden bg-ink">
+                      <video
+                        controls
+                        playsInline
+                        preload="metadata"
+                        poster={video.poster}
+                        className="h-full w-full object-contain"
+                      >
+                        <source src={video.src} type="video/mp4" />
+                        Your browser does not support embedded MP4 video.
+                      </video>
                     </div>
-                    <p className="mt-2 text-sm leading-relaxed text-ink/70">
-                      {video.description}
-                    </p>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </section>
+                    <figcaption className="p-3 pb-1">
+                      <div className="font-serif text-xl text-ink">
+                        {video.title}
+                      </div>
+                      <p className="mt-2 text-sm leading-relaxed text-ink/70">
+                        {video.description}
+                      </p>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {item.detail.proof && (
+            <section className="mt-12 border-t border-rule pt-7 sm:mt-16">
+              <div className="grid grid-cols-1 gap-7 border border-rule p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div>
+                  <div className="ref-code">Project proof</div>
+                  <h4 className="mt-2 font-serif text-3xl text-ink">
+                    {item.detail.proof.title}
+                  </h4>
+                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink/75">
+                    {item.detail.proof.description}
+                  </p>
+                </div>
+                <a
+                  href={item.detail.proof.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center border border-ink px-5 py-3 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
+                >
+                  {item.detail.proof.label} ↗
+                </a>
+              </div>
+            </section>
+          )}
         </div>
       </article>
     </div>
