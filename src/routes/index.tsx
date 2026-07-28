@@ -662,9 +662,20 @@ function Work() {
               <span className="ref-code text-ink">{project.category}</span>
               <span
                 aria-hidden
-                className="flex size-10 items-center justify-center border border-ink font-serif text-xl text-ink transition-colors group-hover:bg-ink group-hover:text-paper"
+                className="flex size-10 items-center justify-center border border-ink text-ink transition-colors group-hover:bg-ink group-hover:text-paper"
               >
-                ↗
+                <svg
+                  viewBox="0 0 24 24"
+                  className="size-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="square"
+                  strokeLinejoin="miter"
+                >
+                  <path d="M7 17 17 7" />
+                  <path d="M9 7h8v8" />
+                </svg>
               </span>
             </div>
 
