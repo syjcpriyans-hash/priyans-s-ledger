@@ -27,20 +27,29 @@ export const Route = createFileRoute("/")({
 /* -------------------------------------------------------------------------- */
 
 function TopBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigation = [
+    ["Work", "#work"],
+    ["AI School", "#ai-school"],
+    ["More", "#more"],
+    ["Toolkit", "#toolkit"],
+    ["Contact", "#contact"],
+  ];
+
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-3 sm:flex-nowrap sm:px-6">
-        <a href="#top" className="ref-code text-ink">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3 sm:px-6">
+        <a
+          href="#top"
+          className="ref-code text-ink"
+          onClick={() => setIsMenuOpen(false)}
+        >
           PRIYANS / PORTFOLIO — 2026
         </a>
-        <nav className="flex w-full items-center gap-4 overflow-x-auto pb-1 sm:w-auto sm:gap-6 sm:overflow-visible sm:pb-0">
-          {[
-            ["Work", "#work"],
-            ["AI School", "#ai-school"],
-            ["More", "#more"],
-            ["Toolkit", "#toolkit"],
-            ["Contact", "#contact"],
-          ].map(([label, href]) => (
+
+        <nav className="hidden items-center gap-6 sm:flex">
+          {navigation.map(([label, href]) => (
             <a
               key={href}
               href={href}
@@ -50,7 +59,56 @@ function TopBar() {
             </a>
           ))}
         </nav>
+
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((open) => !open)}
+          className="flex size-11 shrink-0 flex-col items-center justify-center gap-1.5 border border-ink text-ink transition-colors hover:bg-ink hover:text-paper sm:hidden"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        >
+          <span
+            aria-hidden
+            className={`block h-px w-5 bg-current transition-transform ${
+              isMenuOpen ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            aria-hidden
+            className={`block h-px w-5 bg-current transition-opacity ${
+              isMenuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            aria-hidden
+            className={`block h-px w-5 bg-current transition-transform ${
+              isMenuOpen ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <nav
+          id="mobile-navigation"
+          className="border-t border-rule bg-paper sm:hidden"
+          aria-label="Mobile navigation"
+        >
+          <div className="mx-auto max-w-6xl px-4 py-2">
+            {navigation.map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setIsMenuOpen(false)}
+                className="ref-code flex min-h-12 items-center border-b border-rule text-ink transition-colors last:border-b-0 hover:text-stamp"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
