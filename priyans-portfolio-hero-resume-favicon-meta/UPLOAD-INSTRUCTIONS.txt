@@ -1,0 +1,47 @@
+PRIYANS PORTFOLIO — HERO, RESUME, FAVICON AND META UPDATE
+
+Repository:
+syjcpriyans-hash/priyans-s-ledger
+
+Upload/replace:
+1. src/routes/index.tsx
+2. public/priyans-resume.pdf
+3. public/favicon.png
+
+The ZIP also includes all current public portfolio assets and may be uploaded
+as a complete update.
+
+Changes included:
+
+HERO COPY
+Replaces the old Indian SME / D2C research sentence with:
+"I build practical AI-powered products, business systems, and automation
+workflows that solve real operational problems. My work spans digital
+products, Excel-based management systems, logistics tools, Make.com
+automations, and AI education—combining marketing, technology, and systems
+thinking to turn ideas into solutions used in real business environments."
+
+RESUME
+- Adds the newly supplied Priyans Kevadia resume
+- File path: /public/priyans-resume.pdf
+- The existing Resume · PDF button already links to this file
+
+FAVICON
+- Replaces the Lovable-style favicon at the page-metadata level
+- Adds a custom PK portfolio favicon
+- Includes a cache-busting favicon URL so browsers are less likely to show the old cached icon
+
+WEBSITE TITLE / DESCRIPTION
+- Browser title: Priyans Kevadia Portfolio
+- Meta description: Priyans Kevadia Portfolio
+- Open Graph title: Priyans Kevadia Portfolio
+- Open Graph description: Priyans Kevadia Portfolio
+
+No Featured Work content, project case studies, AI School carousel,
+automation scenarios, videos, footer, mobile hamburger menu, sticky-title
+behaviour, card layout, or established UI/UX has been changed.
+
+Suggested commit message:
+Update portfolio hero resume and branding
+
+Commit all files to the main branch. Vercel should deploy automatically.
