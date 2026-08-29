@@ -219,49 +219,51 @@ type Case = {
 const CASES: Case[] = [
   {
     code: "WORK/01",
-    category: "AI PRODUCT · E-COMMERCE",
+    category: "CHROME EXTENSION · PDF WORKFLOW",
     status: "LIVE",
-    title: "ListingsReady",
+    title: "PolishPDF",
     summary:
-      "An AI workflow platform that helps e-commerce sellers create professional product images while preserving exact product accuracy.",
+      "A Chrome extension that lets users edit PDF text, formatting, annotations, and page order directly in Chrome, Gmail, and Zoho Mail.",
     problem:
-      "Small e-commerce sellers often cannot justify professional photography for every listing. Generative AI can reduce production time and cost, but it frequently changes commercially important details such as colour, texture, shape, proportions, stitching, logos, prints, packaging, and labels. These inaccuracies can create misleading listings, weaken customer trust, increase returns, and introduce marketplace-compliance risk.",
+      "People working with invoices, quotes, forms, and other business PDFs often have to download a file, open a separate editor, make a small correction, save a new copy, and reattach it to the original email. I designed PolishPDF around reducing that repeated download-edit-save-reattach workflow while keeping quick PDF corrections inside the browser.",
     build: [
-      "Defined the product as a structured workflow layer rather than another image generator. I deliberately excluded user accounts, image uploads, automatic product detection, and AI validation from the first version so I could launch faster and test the core value proposition before investing in heavier infrastructure.",
-      "Selected clothing as the initial category because fabric, colour, fit, stitching, prints, embroidery, and branding make product-accuracy problems visible, measurable, and commercially important.",
-      "Created a repeatable workflow architecture covering the complete prompt, recommended AI tool, common generation mistakes, correction prompts, execution guidance, marketplace considerations, and product-fidelity constraints.",
-      "Developed and tested instructions designed to preserve the original product's colour, texture, shape, proportions, stitching, branding, packaging, and all visible details across white-background, lifestyle, flat-lay, detail, front-and-back, size-guide, and packaging use cases.",
-      "Built and deployed the responsive platform using React, TypeScript, TanStack Router, GitHub, and Vercel, while resolving routing and workflow-detail-page issues.",
-      "Led the product positioning, information architecture, SEO, brand system, educational content, community outreach, and organic go-to-market strategy for e-commerce and D2C sellers.",
+      "Designed the product around Gmail, Zoho Mail, and Chrome PDF workflows so users can make document corrections without leaving the environment where the PDF is already being handled.",
+      "Built Smart Text for editing existing PDF text and Draw Text / Add Text for placing new text into a document.",
+      "Added formatting controls for font, size, spacing, alignment, scale, rotation, and colour so corrections can better match the original document.",
+      "Added annotation and document-editing tools including highlight, underline, strike-through, whiteout, drawing, shapes, page reordering, page deletion, undo, and redo.",
+      "Worked toward searchable PDF export for supported documents so edited files remain useful as business documents rather than becoming image-only outputs.",
+      "Iterated the extension through real Gmail, Zoho Mail, and Chrome workflows and published PolishPDF on the Chrome Web Store.",
     ],
     outcome:
-      "ListingsReady became a live product with an initial library of 30 apparel workflows, a defined target customer, a scalable content system, and an organic distribution strategy. The project demonstrates end-to-end ownership across customer-problem research, market positioning, MVP scoping, prompt engineering, UX planning, front-end execution, deployment, SEO, and go-to-market development.",
+      "PolishPDF is published as a live Chrome extension for editing PDF text, formatting, annotations, and page order directly from Chrome-based workflows. The project demonstrates product strategy, browser-extension development, workflow UX, PDF document handling, iterative testing, and shipping a real software product to a public marketplace.",
     meta: [
       {
         label: "ROLE",
         value:
-          "Founder · Product strategist · Prompt engineer · Front-end contributor",
+          "Founder · Product designer · Chrome extension developer",
       },
       {
         label: "TOOLS",
         value:
-          "React · TypeScript · TanStack Router · GitHub · Vercel · ChatGPT",
+          "Chrome Extension APIs · JavaScript · PDF.js · GitHub",
       },
       {
         label: "SKILLS",
         value:
-          "Customer research · Product positioning · MVP scoping · Workflow design · Prompt engineering · UX · SEO · Organic marketing",
+          "Product strategy · Workflow design · Browser extensions · PDF editing · UX · QA and iterative testing",
       },
     ],
     artifact: {
-      label: "ListingsReady — live website",
+      label: "PolishPDF — Chrome Web Store",
       caption:
-        "Live homepage screenshot showing the workflow platform and product positioning.",
-      image: "/listingsready-website-proof.png",
-      alt: "ListingsReady website homepage showing its navigation, product-photography value proposition, example product images, and latest workflow additions.",
+        "Published Chrome extension for editing PDF text, formatting, annotations, and page order in Chrome, Gmail, and Zoho Mail.",
     },
     links: [
-      { label: "Visit ListingsReady", href: "https://listingsready.com" },
+      {
+        label: "View on Chrome Web Store",
+        href:
+          "https://chromewebstore.google.com/detail/polishpdf/lpllgjpdolemhfepomacnbhcnohnbned",
+      },
     ],
   },
   {
@@ -1126,10 +1128,65 @@ const MORE: MoreItem[] = [
   },
   {
     code: "MORE/03",
-    tag: "BRAND & PACKAGING",
-    title: "Organik Doze + premium juice concept",
+    tag: "AI PRODUCT · E-COMMERCE",
+    title: "ListingsReady",
     body:
-      "AI-generated packaging concept for Organik Doze supplements, plus a full packaging identity concept for a premium health juice brand.",
+      "Built and launched an AI workflow platform that helps e-commerce sellers create professional product images while preserving product accuracy.",
+    detail: {
+      status: "LIVE PRODUCT",
+      processHeading: "Product development",
+      overview:
+        "Small e-commerce sellers can use generative AI to reduce the cost and time of product photography, but AI tools often change commercially important details such as colour, texture, proportions, stitching, logos, prints, packaging, and labels. I built ListingsReady as a structured workflow layer that helps sellers use existing AI tools more reliably instead of creating another image generator.",
+      objective:
+        "Help e-commerce sellers create listing-ready product images with a repeatable workflow while protecting the visual details customers rely on when deciding what to buy.",
+      tools: [
+        "React",
+        "TypeScript",
+        "TanStack Router",
+        "GitHub",
+        "Vercel",
+        "ChatGPT",
+      ],
+      process: [
+        {
+          title: "Problem selection and MVP scope",
+          body:
+            "Focused the first version on apparel, where colour, fabric, stitching, fit, prints, and branding make product-accuracy errors especially visible and commercially important.",
+        },
+        {
+          title: "Workflow architecture",
+          body:
+            "Created repeatable workflows covering the main prompt, recommended AI tool, common mistakes, correction prompts, execution guidance, and product-fidelity constraints.",
+        },
+        {
+          title: "Product testing and iteration",
+          body:
+            "Tested workflows across white-background, lifestyle, flat-lay, detail, front-and-back, size-guide, and packaging use cases while refining instructions that protect visible product details.",
+        },
+        {
+          title: "Launch and positioning",
+          body:
+            "Built and deployed the responsive web platform, structured the information architecture, and worked on SEO, product positioning, educational content, and organic outreach.",
+        },
+      ],
+      company: "ListingsReady",
+      companySummary:
+        "An independent AI product focused on practical, repeatable product-photography workflows for e-commerce sellers.",
+      companyPoints: [
+        "Chose a narrow first market instead of building a broad AI image platform.",
+        "Prioritized workflow reliability and product fidelity over feature volume.",
+        "Combined product strategy, prompt engineering, front-end execution, SEO, and go-to-market work in one project.",
+      ],
+      outcome:
+        "ListingsReady became a live product with an initial library of 30 apparel workflows, a defined target customer, a scalable content structure, and an organic distribution strategy. The project demonstrates end-to-end ownership from customer-problem selection and MVP scoping through workflow design, front-end implementation, deployment, positioning, and launch.",
+      proof: {
+        title: "ListingsReady — live platform",
+        description:
+          "Open the live website to view the workflow library, product positioning, and current platform experience.",
+        href: "https://listingsready.com",
+        label: "Visit ListingsReady",
+      },
+    },
   },
 ];
 
