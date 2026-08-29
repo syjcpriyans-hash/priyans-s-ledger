@@ -1,0 +1,4 @@
+Priyans Kevadia Portfolio deployment refresh
+Expected hero: practical AI-powered products, business systems, and automation workflows
+Expected title: Priyans Kevadia Portfolio
+Expected favicon: /favicon.png?v=3

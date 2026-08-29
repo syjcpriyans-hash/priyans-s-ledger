@@ -1,25 +1,29 @@
+// Portfolio deployment marker: 2026-08-29-branding-refresh
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Priyans — Builder, Researcher, Operator" },
+      { title: "Priyans Kevadia Portfolio" },
       {
         name: "description",
-        content:
-          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone Excel system, and the Delmen shipping workflow.",
+        content: "Priyans Kevadia Portfolio",
       },
-      { property: "og:title", content: "Priyans — Builder, Researcher, Operator" },
+      { property: "og:title", content: "Priyans Kevadia Portfolio" },
       {
         property: "og:description",
-        content:
-          "AI-powered products, client-built Excel business systems, and structured research into Indian SME and D2C markets. See ListingsReady, the Product Shopping Zone Excel system, and the Delmen shipping workflow.",
+        content: "Priyans Kevadia Portfolio",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "icon", type: "image/png", href: "/favicon.png?v=3" },
+      { rel: "shortcut icon", type: "image/png", href: "/favicon.png?v=3" },
+      { rel: "apple-touch-icon", href: "/favicon.png?v=3" },
+    ],
   }),
   component: Index,
 });
@@ -123,9 +127,13 @@ function Hero() {
         <h1 className="font-serif text-5xl leading-[1.05] tracking-tight text-ink sm:text-7xl">
           Priyans
         </h1>
-        <p className="mt-8 max-w-3xl font-serif text-2xl leading-snug text-ink sm:text-3xl">
-          I build AI-powered products and back them with on-the-ground research
-          into where Indian SME and D2C markets are underserved.
+        <p className="mt-8 max-w-4xl font-serif text-2xl leading-snug text-ink sm:text-3xl">
+          I build practical AI-powered products, business systems, and automation
+          workflows that solve real operational problems. My work spans digital
+          products, Excel-based management systems, logistics tools, Make.com
+          automations, and AI education—combining marketing, technology, and
+          systems thinking to turn ideas into solutions used in real business
+          environments.
         </p>
         <div className="mt-12 flex flex-wrap gap-3">
           <a
