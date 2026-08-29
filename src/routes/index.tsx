@@ -6,6 +6,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Priyans Kevadia Portfolio" },
+      { name: "application-name", content: "Priyans Kevadia Portfolio" },
       {
         name: "description",
         content: "Priyans Kevadia Portfolio",
@@ -16,10 +17,10 @@ export const Route = createFileRoute("/")({
         content: "Priyans Kevadia Portfolio",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://priyanskevadia.com" },
     ],
     links: [
-      { rel: "canonical", href: "/" },
+      { rel: "canonical", href: "https://priyanskevadia.com" },
       { rel: "icon", type: "image/png", href: "/favicon.png?v=3" },
       { rel: "shortcut icon", type: "image/png", href: "/favicon.png?v=3" },
       { rel: "apple-touch-icon", href: "/favicon.png?v=3" },
