@@ -945,6 +945,7 @@ type MoreVideo = {
   description: string;
   src: string;
   poster: string;
+  portrait?: boolean;
 };
 
 type MoreItem = {
@@ -1043,6 +1044,7 @@ const MORE: MoreItem[] = [
           src: "/delmen-videos/delmen-refrigerator-vertical.mp4",
           poster:
             "/delmen-videos/delmen-refrigerator-vertical-poster.jpg",
+          portrait: true,
         },
       ],
     },
@@ -1140,6 +1142,26 @@ function MoreDetail({
   item: MoreItem;
   onClose: () => void;
 }) {
+  const [expandedVideo, setExpandedVideo] = useState<MoreVideo | null>(null);
+
+  useEffect(() => {
+    if (!expandedVideo) return;
+
+    const closeExpandedVideo = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        setExpandedVideo(null);
+      }
+    };
+
+    window.addEventListener("keydown", closeExpandedVideo, true);
+
+    return () => {
+      window.removeEventListener("keydown", closeExpandedVideo, true);
+    };
+  }, [expandedVideo]);
+
   if (!item.detail) return null;
 
   return (
@@ -1293,9 +1315,13 @@ function MoreDetail({
                 {item.detail.videos.map((video) => (
                   <figure
                     key={video.src}
-                    className="border border-rule bg-paper p-3"
+                    className="flex flex-col border border-rule bg-paper p-3"
                   >
-                    <div className="flex aspect-video items-center justify-center overflow-hidden bg-ink">
+                    <div
+                      className={`flex items-center justify-center overflow-hidden bg-ink ${
+                        video.portrait ? "aspect-[9/12]" : "aspect-video"
+                      }`}
+                    >
                       <video
                         controls
                         playsInline
@@ -1307,13 +1333,21 @@ function MoreDetail({
                         Your browser does not support embedded MP4 video.
                       </video>
                     </div>
-                    <figcaption className="p-3 pb-1">
+                    <figcaption className="flex flex-1 flex-col p-3 pb-1">
                       <div className="font-serif text-xl text-ink">
                         {video.title}
                       </div>
                       <p className="mt-2 text-sm leading-relaxed text-ink/70">
                         {video.description}
                       </p>
+                      <button
+                        type="button"
+                        onClick={() => setExpandedVideo(video)}
+                        className="mt-5 inline-flex min-h-11 w-full items-center justify-center border border-ink px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-paper"
+                        aria-label={`View ${video.title} full screen`}
+                      >
+                        View fullscreen
+                      </button>
                     </figcaption>
                   </figure>
                 ))}
@@ -1391,6 +1425,55 @@ function MoreDetail({
             </section>
           )}
         </div>
+
+        {expandedVideo && (
+          <div
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/95 p-3 sm:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Full-screen video: ${expandedVideo.title}`}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
+                setExpandedVideo(null);
+              }
+            }}
+          >
+            <div className="flex h-full w-full max-w-7xl flex-col">
+              <div className="mb-3 flex items-center justify-between gap-4">
+                <div className="font-serif text-lg text-paper sm:text-2xl">
+                  {expandedVideo.title}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setExpandedVideo(null)}
+                  className="min-h-11 shrink-0 border border-paper px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] text-paper transition-colors hover:bg-paper hover:text-ink"
+                  aria-label="Close full-screen video"
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
+                <video
+                  key={expandedVideo.src}
+                  controls
+                  autoPlay
+                  playsInline
+                  preload="auto"
+                  poster={expandedVideo.poster}
+                  className={
+                    expandedVideo.portrait
+                      ? "max-h-full w-auto max-w-full object-contain"
+                      : "h-auto max-h-full w-full max-w-full object-contain"
+                  }
+                >
+                  <source src={expandedVideo.src} type="video/mp4" />
+                  Your browser does not support embedded MP4 video.
+                </video>
+              </div>
+            </div>
+          </div>
+        )}
       </article>
     </div>
   );
